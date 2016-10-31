@@ -7,4 +7,5 @@ svg=d3.select("#chart")
 var text=svg
 .append("text")
 .text("hello world")
-.attr("y",50);
+.attr("y",250)
+.attr("x", 600);

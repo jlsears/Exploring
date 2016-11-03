@@ -2,12 +2,14 @@ var w=960,h=500,
 svg=d3.select("#chart")
 .append("svg")
 .attr("width",w)
-.attr("height",h);
+.attr("height",h)
+.attr("class", "chart1");
 
-var svg2 = d3.select("#chart")
+var svg2 = d3.select("#chart2")
 .append("svg")
 .attr("width", w)
-.attr("height", h);
+.attr("height", h)
+.attr("class", "chart2");;
  
 var text=svg
 .append("text")
@@ -18,5 +20,5 @@ var text=svg
 var moreText = svg2
 .append("text")
 .text("I said 'ello'")
-.attr("y", 500)
+.attr("y", 250)
 .attr("x", 600);

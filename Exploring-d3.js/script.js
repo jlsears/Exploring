@@ -35,14 +35,18 @@ var radiusData = [10, 15, 20, 25, 30];
 var circleData = [[10, "rgb(246, 239, 247)"], [15, "rgb(189,201,225)"], [20, "rgb(103,169,207)"], [25, "rgb(28,144,153)"], [30, "rgb(1,108,89)"]];
 
 // selecting div
-fancierCircle = d3.select("#bestCircle");
+fancierCircle = d3.select("#bestCircle")
+	.append("svg:svg")
+	.attr("width", circleData.length * 100)
+	.attr("height", 100);
 
 // selecting all the circles in the above div
 fancierCircle.selectAll("circle")
-	.attr("r", 50)
-	.style("stroke", "darkseagreen")
-	.style("fill", "orange")
 	.data(circleData)
+	.enter()
+	.append("circle")
+	.attr("cx", function(d) { return d[0] * 14})
+	.attr("cy", 50)
 	.attr("r", function(d) { return d[0]})
 	.style("fill", function(d) {return d[1]});
 

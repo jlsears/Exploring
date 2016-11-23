@@ -31,6 +31,9 @@ var moreText = svg2
 
 var radiusData = [10, 15, 20, 25, 30];
 
+// new and improved multidimensional array: radius AND color
+var circleData = [[10, "rgb(246, 239, 247)"], [15, "rgb(189,201,225)"], [20, "rgb(103,169,207)"], [25, "rgb(28,144,153)"], [30, "rgb(1,108,89)"]];
+
 // selecting div
 fancierCircle = d3.select("#bestCircle");
 
@@ -39,7 +42,8 @@ fancierCircle.selectAll("circle")
 	.attr("r", 50)
 	.style("stroke", "darkseagreen")
 	.style("fill", "orange")
-	.data(radiusData)
-	.attr("r", function(d) { return d});
+	.data(circleData)
+	.attr("r", function(d) { return d[0]})
+	.style("fill", function(d) {return d[1]});
 
 

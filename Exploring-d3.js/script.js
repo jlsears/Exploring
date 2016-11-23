@@ -29,7 +29,15 @@ var moreText = svg2
 .attr("y", 250)
 .attr("x", 600);
 
-var fancierCircle = d3.select("#fancyCircle");
-	fancierCircle.attr("r", 50);
-	fancierCircle.style("stroke", "darkseagreen");
-	fancierCircle.style("fill", "orange");
+var radiusData = [10, 15, 20, 25, 30];
+
+fancierCircle = d3.select("#bestCircle");
+
+fancierCircle.selectAll("circle")
+	.attr("r", 50)
+	.style("stroke", "darkseagreen")
+	.style("fill", "orange")
+	.data(radiusData)
+	.attr("r", function(d) { return d});
+
+

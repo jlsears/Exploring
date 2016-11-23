@@ -31,8 +31,10 @@ var moreText = svg2
 
 var radiusData = [10, 15, 20, 25, 30];
 
+// selecting div
 fancierCircle = d3.select("#bestCircle");
 
+// selecting all the circles in the above div
 fancierCircle.selectAll("circle")
 	.attr("r", 50)
 	.style("stroke", "darkseagreen")

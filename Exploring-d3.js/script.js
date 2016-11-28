@@ -50,4 +50,18 @@ fancierCircle.selectAll("circle")
 	.attr("r", function(d) { return d[0]})
 	.style("fill", function(d) {return d[1]});
 
+var sampleSVG = d3.select("#mouseEvent_example")
+	.append("svg:svg")
+	.attr("width", 200)
+	.attr("height", 200);
+
+sampleSVG.append("svg:rect")
+	.style("stroke", "gray")
+	.style("fill", "white")
+	.attr("x", 50)
+	.attr("y", 50)
+	.attr("width", 100)
+	.attr("height", 100)
+	.on("mouseover", function(){d3.select(this).style("fill", "green");})
+	.on("mouseout", function(){d3.select(this).style("fill", "white");});
 

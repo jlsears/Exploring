@@ -36,15 +36,15 @@ var circleData = [[10, "rgb(246, 239, 247)"], [15, "rgb(189,201,225)"], [20, "rg
 
 // selecting div
 fancierCircle = d3.select("#bestCircle")
-	.append("svg:svg")
+	.append("svg:svg") // adding svg container and returning current selection
 	.attr("width", circleData.length * 100)
 	.attr("height", 100);
 
 // selecting all the circles in the above div
 fancierCircle.selectAll("circle")
 	.data(circleData)
-	.enter()
-	.append("circle")
+	.enter() // preparing to add elements
+	.append("circle") // adding child circle below svg parent node
 	.attr("cx", function(d) { return d[0] * 14})
 	.attr("cy", 50)
 	.attr("r", function(d) { return d[0]})

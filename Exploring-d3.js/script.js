@@ -55,6 +55,10 @@ var sampleSVG = d3.select("#mouseEvent_example")
 	.attr("width", 200)
 	.attr("height", 200);
 
+var source = ["red", "orange", "yellow", "green", "blue", "indigo", "violet"];
+
+var color = source[Math.floor(Math.random()*source.length)];
+
 sampleSVG.append("svg:rect")
 	.style("stroke", "gray")
 	.style("fill", "white")
@@ -62,6 +66,7 @@ sampleSVG.append("svg:rect")
 	.attr("y", 50)
 	.attr("width", 100)
 	.attr("height", 100)
-	.on("mouseover", function(){d3.select(this).style("fill", "green");})
+	//.on("mouseover", function(){d3.select(this).style("fill", "green");})
+	//.on("mouseout", function(){d3.select(this).style("fill", "white");})
+	.on("click", function(){d3.select(this).style("fill", function(){return source[Math.floor(Math.random()*source.length)];});})
 	.on("mouseout", function(){d3.select(this).style("fill", "white");});
-

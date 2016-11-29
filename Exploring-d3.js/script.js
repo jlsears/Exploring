@@ -70,3 +70,28 @@ sampleSVG.append("svg:rect")
 	//.on("mouseout", function(){d3.select(this).style("fill", "white");})
 	.on("click", function(){d3.select(this).style("fill", function(){return source[Math.floor(Math.random()*source.length)];});})
 	.on("mouseout", function(){d3.select(this).style("fill", "white");});
+
+var buttonData = [[10, 20, 20, "rgb(224, 236, 244)"], [30, 50, 50, "rgb(136, 86, 167)"]];
+
+var w = 300, h = 300;
+
+var myExample = d3.select("#example99")
+	.append("svg:svg")
+	.attr("width", w)
+	.attr("height", h);
+
+myExample.selectAll("circle")
+	.data(buttonData)
+	.enter()
+	.append("circle")
+	.attr("r", function(d){return d[0]})
+	.attr("cx", function(d){return d[1]})
+	.attr("cy", function(d){return d[2]})
+	.style("stroke", "black")
+	.style("fill", function(d){return d[3]});
+
+d3.select("#example99 button").on("click", function(){
+	myExample.selectAll("circle")
+	.attr("cx", function(){return Math.random() * w})
+	.attr("cy", function(){return Math.random() * h});
+})

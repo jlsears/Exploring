@@ -8,3 +8,10 @@
 	fill: white;
 }
 
+.buttonex button {
+	left: 220px;
+/*	position: absolute;
+*/	top: 320px;
+	width: 80px;
+}
+

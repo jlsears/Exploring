@@ -9,3 +9,6 @@
     "rgb(255, 255, 153)", "rgb(56, 108, 176)", "rgb(240, 2, 127)",
     "rgb(191, 91, 23)", "rgb(102, 102, 102)"]
 
+var x = d3.scale.linear()
+	.domain([d3.min(xMaleLE)-20, d3.max(xMaleLE)+20])
+	.range([0, width]);

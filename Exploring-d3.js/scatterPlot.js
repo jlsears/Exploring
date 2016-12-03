@@ -21,3 +21,11 @@ var r = d3.scale.linear()
 	.domain([d3.min(rMedianIncome), d3.max(rMedianIncome)])
 	.range([5, 35]);
 
+var xAxis = d3.svg.axis()
+	.scale(x)
+	.orient('bottom');
+
+var yAxis = d3.svg.axis()
+	.scale(y)
+	.orient('left');
+

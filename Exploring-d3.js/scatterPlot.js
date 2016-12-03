@@ -17,3 +17,7 @@ var y = d3.scale.linear()
 	.domain([d3.min(xMaleLE)-20, d3.max(yFemaleLE)+20])
 	.range(height, 0);
 
+var r = d3.scale.linear()
+	.domain([d3.min(rMedianIncome), d3.max(rMedianIncome)])
+	.range([5, 35]);
+

@@ -29,3 +29,12 @@ var yAxis = d3.svg.axis()
 	.scale(y)
 	.orient('left');
 
+main.append('g')
+	.attr('transform', 'translate(0,' + height + ')')
+	.attr('class', 'main axis date')
+	.call(yAxis);
+
+main.append('g')
+	.attr('transform', 'translate(0, 0)')
+	.attr('class', 'main axis date')
+	.call(xAxis);

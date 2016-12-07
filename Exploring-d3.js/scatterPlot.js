@@ -92,5 +92,6 @@ g.selectAll('scatterplot')
 	.attr("y", function(d){  return y(d);  })
 	.attr("x", function(d,i){ return x(xMaleLE[i]);})
 	.attr("dx", function(d,i){ return -r(rMedianIncome[i]);})
-	.text(function(d,i){ return tCountry[i];});
+	.text(function(d,i){ return tCountry[i];})
+	.style("font-size", function(i){  return i/5  });
 

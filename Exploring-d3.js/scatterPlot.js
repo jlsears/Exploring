@@ -56,6 +56,7 @@ var yAxis = d3.svg.axis()
 	.orient('left');
 
 // Adding x axis to the chart
+// The translate transformation specifies a translation by x and y
 
 main.append('g')
 	.attr('transform', 'translate(0,' + height + ')')

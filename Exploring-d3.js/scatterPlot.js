@@ -12,13 +12,20 @@ var margin = {top: 20, right: 15, bottom: 60, left: 60}
 , width = 730 - margin.left - margin.right
 , height = 730 - margin.top - margin.bottom;
 
+// Function that creates x positions
+
 var x = d3.scale.linear()
 	.domain([d3.min(xMaleLE) - 20, d3.max(xMaleLE) + 20])
 	.range([0, width]);
 
+// Function that creates y positions
+// Using xMaleLE to set domain in order to maintain 1:1 aspect ratio in graph
+
 var y = d3.scale.linear()
 	.domain([d3.min(xMaleLE) - 20, d3.max(yFemaleLE) + 20])
 	.range([height, 0]);
+
+// Function that creates radius lengths
 
 var r = d3.scale.linear()
 	.domain([d3.min(rMedianIncome), d3.max(rMedianIncome)])
@@ -36,25 +43,38 @@ var main = chart.append('g')
 	.attr('height', height)
 	.attr('class', 'main')
 
+// Creating x axis
+
 var xAxis = d3.svg.axis()
 	.scale(x)
 	.orient('bottom');
+
+// Creating y axis
+
+var yAxis = d3.svg.axis()
+	.scale(y)
+	.orient('left');
+
+// Adding x axis to the chart
 
 main.append('g')
 	.attr('transform', 'translate(0,' + height + ')')
 	.attr('class', 'main axis date')
 	.call(xAxis);
 
-var yAxis = d3.svg.axis()
-	.scale(y)
-	.orient('left');
+// Adding y axis to the chart
 
 main.append('g')
 	.attr('transform', 'translate(0, 0)')
 	.attr('class', 'main axis date')
 	.call(yAxis);
 
+// Creating svg group element (container for all child svg elements)
+
 var g = main.append("svg:g");
+
+// Binding female life expectancy data, drawing as a circle
+// And setting coordinates with corresponding functions
 
 g.selectAll('scatterplot')
 	.data(yFemaleLE)
@@ -63,6 +83,8 @@ g.selectAll('scatterplot')
 	.attr("cx", function(d,i){  return x(xMaleLE[i]);  })
 	.attr("r", function(d,i){  return r(rMedianIncome[i]);  })
 	.style("fill", function(d,i){  return cCountry[i];});
+
+// Overlaying country names on data points
 
 g.selectAll('scatterplot')
 	.data(yFemaleLE)

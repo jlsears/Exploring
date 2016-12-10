@@ -87,3 +87,15 @@ g.selectAll(".yTicks")
 	.attr("x1", x(-0.3))
 	.attr("y2", function(d){ return -1 * y(d) })
 	.attr("x2", x(0));
+
+var line = d3.svg.line()
+	.x(function(d,i) { return x(i); })
+	.y(function(d) { return -1 * y(d); });
+
+g.append("svg:path")
+	.transition()
+	.delay(1100)
+	.attr("d", line(data1))
+	.style("stroke", "indianred")
+	.style("stroke-width", 3)
+	.style("fill", "none");

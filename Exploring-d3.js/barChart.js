@@ -44,4 +44,26 @@ barBasic.selectAll("rect")
 
 var xScale = d3.scale.linear().domain([0, 20]).range(([0, 100]));
 
+barBasic.selectAll("text")
+	.data(data)
+	.enter()
+	.append("svg:text")
+	.attr("x", function(data, index){ return x(index) + barWidth; })
+	.attr("y", function(data){ return height - y(data.deaths); })
+	.attr("dx", -barWidth/2)
+	.attr("dy", "1.2em")
+	.attr("text-anchor", "middle")
+	.text(function(data){ return data.deaths; })
+	.attr("fill", "white");
 
+barBasic.selectAll("text.yAxis")
+	.data(data)
+	.enter().append("svg:text")
+	.attr("x", function(data, index) { return x(index) + barWidth; })
+	.attr("y", height)
+	.attr("dx", -barWidth/2)
+	.attr("text-anchor", "middle")
+	.attr("style", "font-size: 12; font-family: Helvetica, sans-serif")
+	.text(function(data){ return data.year; })
+	.attr("transform", "translate(0, 18)")
+	.attr("class", "yAxis");

@@ -1,4 +1,8 @@
 
+// *********************************
+// VALUES
+// *********************************
+
 var data2 = [1, 3, 4, 3, 6, 1, 8, 2, 4, 1, 3, 4, 1];
 var data1 = [3, 6, 2, 7, 5, 2, 1, 3, 8, 9, 2, 5, 7];
 
@@ -6,13 +10,10 @@ var w = 500;
 var h = 200;
 var margin = 20;
 
-// Use to convert data values to y positions
 
-var y = d3.scale.linear().domain([0, d3.max(data1)]).range([0 + margin, h - margin]);
-
-// Use to convert data values to x positions
-
-var x = d3.scale.linear().domain([0, data1.length]).range([0 + margin, w - margin]);
+// *********************************
+// SETTING UP SVG CONTAINER GROUP
+// *********************************
 
 // Adding svg element to viz container
 
@@ -25,6 +26,25 @@ var vis = d3.select("#viz")
 
 var g = vis.append("svg:g")
 	.attr("transform", "translate(0, 200)");
+
+
+// *********************************
+// FOR CREATING X & Y COORDINATES
+// *********************************
+
+
+// Use to convert data values to y positions
+
+var y = d3.scale.linear().domain([0, d3.max(data1)]).range([0 + margin, h - margin]);
+
+// Use to convert data values to x positions
+
+var x = d3.scale.linear().domain([0, data1.length]).range([0 + margin, w - margin]);
+
+
+// *********************************
+// X & Y AXIS
+// *********************************
 
 // Creating x axis
 
@@ -47,6 +67,11 @@ g.append("svg:line")
 	.attr("y1", -1 * y(0))
 	.attr("x2", x(0))
 	.attr("y2", -1 * y(d3.max(data1)));
+	
+
+// *********************************
+// LABELS & TICK MARKS
+// *********************************
 
 // Adding x axis lables
 
@@ -109,6 +134,11 @@ g.selectAll(".yTicks")
 	.attr("y2", function(d){ return -1 * y(d) })
 	.attr("x2", x(0));
 
+
+// *********************************
+// DRAWING INTERACTIVE GRAPH
+// *********************************
+
 // Function used to create line 
 
 var line = d3.svg.line()
@@ -125,7 +155,6 @@ g.append("svg:path")
 	.style("stroke", "indianred")
 	.style("stroke-width", 3)
 	.style("fill", "none");
-
 
 // Declaring Boolean variable for use in changing array reflected
 

@@ -99,3 +99,27 @@ g.append("svg:path")
 	.style("stroke", "indianred")
 	.style("stroke-width", 3)
 	.style("fill", "none");
+
+var change = new Boolean();
+
+change = true;
+
+vis.on("mousedown", function(){
+	if(change){
+		g.select("path")
+		.transition()
+		.duration(2000)
+		.attr("d", line(data2))
+		.style("stroke", "steelblue")
+
+		change = false
+	} else {
+		g.select("path")
+		.transition()
+		.duration(2000)
+		.attr("d", line(data1))
+		.style("stroke", "indianred")
+
+		change = true
+	}
+});

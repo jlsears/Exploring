@@ -12,7 +12,13 @@ rectDemo.append("svg:rect")
 	.style("fill", "gold");
 
 
-var data = [{year: 2012, deaths: 96}];
+  var data = [{year: 2006, deaths: 55},
+        {year: 2007, deaths: 63},
+        {year: 2008, deaths: 69},
+        {year: 2009, deaths: 81},
+        {year: 2010, deaths: 74},
+        {year: 2011, deaths: 79},
+        {year: 2012, deaths: 93}];
 
 var barWidth = 40;
 var width = (barWidth + 10) * data.length;
@@ -35,3 +41,7 @@ barBasic.selectAll("rect")
 	.attr("height", function(data){ return y(data.deaths); })
 	.attr("width", barWidth)
 	.attr("fill", "purple");
+
+var xScale = d3.scale.linear().domain([0, 20]).range(([0, 100]));
+
+

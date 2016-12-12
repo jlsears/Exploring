@@ -89,3 +89,12 @@ barBasic.selectAll("text.yAxis")
 	.text(function(data){ return data.year; })
 	.attr("transform", "translate(0, 18)")
 	.attr("class", "yAxis");
+
+barBasic.append("svg:line")
+	.transition()
+	.duration(1000)
+	.style("stroke", "black")
+	.attr("x1", x(0))
+	.attr("y1", -1 * y(0))
+	.attr("x2", x(width))
+	.attr("y2", -1 * y(0));

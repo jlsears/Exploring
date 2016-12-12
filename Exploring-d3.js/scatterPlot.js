@@ -1,3 +1,7 @@
+
+// *********************************
+// VALUES
+// *********************************
  
 var xMaleLE = [55, 70, 65, 60, 70, 67, 70, 80];
 var yFemaleLE = [57, 58, 55, 57, 62, 75, 83, 85];
@@ -11,6 +15,11 @@ var cCountry = ["rgb(127, 201, 127)","rgb(190, 174, 212)","rgb(253, 192, 134)",
 var margin = {top: 20, right: 15, bottom: 60, left: 60}
 , width = 730 - margin.left - margin.right
 , height = 730 - margin.top - margin.bottom;
+
+
+// *********************************
+// COORDINATE DESIGN
+// *********************************
 
 // Function that creates x positions
 
@@ -31,6 +40,11 @@ var r = d3.scale.linear()
 	.domain([d3.min(rMedianIncome), d3.max(rMedianIncome)])
 	.range([5, 35]);
 
+
+// *********************************
+// SETTING UP SVG CONTAINER GROUP
+// *********************************
+
 var chart = d3.select('#scatterplot')
 	.append('svg:svg')
 	.attr('width', width + margin.right + margin.left)
@@ -42,6 +56,11 @@ var main = chart.append('g')
 	.attr('width', width)
 	.attr('height', height)
 	.attr('class', 'main')
+
+
+// *********************************
+// X & Y AXIS
+// *********************************
 
 // Creating x axis
 
@@ -69,6 +88,11 @@ main.append('g')
 	.attr('transform', 'translate(0, 0)')
 	.attr('class', 'main axis date')
 	.call(yAxis);
+
+
+// *********************************
+// GENERATING SCATTERPLOT
+// *********************************
 
 // Creating svg group element (container for all child svg elements)
 

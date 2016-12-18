@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Vue.js Navigation Menu</title>	<link href="css/navBar.css" rel="stylesheet">
+  <title>Vue.js Navigation Menu</title>	
+  <link href="css/navBar.css" rel="stylesheet">
 </head>
 <body>
 	<div id="main">
+		<!--Binding to the "active" property in the Vue instance "demo"-->
+		<!--The v-on:click.prevent modifier prevents the page from jumping when a link is clicked-->
 		<nav v-bind:class="active" v-on:click.prevent>
 			<a href="#" class="home" v-on:click="makeActive('home')">Home</a>
 			<a href="#" class="projects" v-on:click="makeActive('projects')">Projects</a>

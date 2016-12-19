@@ -7,12 +7,14 @@ var demo = new Vue({
 
 	// The model
 	data: {
-		active: 'home'
+		active: 'home',
+		previous: 'just starting'
 	},
 
 	methods: {
 
 		makeActive: function(item){
+			this.previous = this.active;
 			this.active = item;
 		}
 	}

@@ -1,13 +1,20 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<!-- 	Creating an inline editor with vue.js 
+	courtesy of http://tutorialzine.com/2016/03/5-practical-examples-for-learning-vue-js/ -->
 	<link href="css/inlineEditor.css" rel="stylesheet">
 </head>
 <body>
+	<!-- v-cloak hides uncompiled data bindings -->
+	<!-- clicking this element will set show_tooltip to false -->
 	<div id="main" v-cloak v-on:click="hideTooltip">
+		<!-- v-on.click.stop stops event propogation -->
 		<div class="tooltip" v-on:click.stop v-if="show_tooltip">
+			<!-- v-model binds the contents of the text field with the corresponding model -->
 			<input type="text" v-model="text_content" />
 		</div>
+		<!-- stopping event propogation on click -->
 		<p v-on:click.stop="toggleTooltip">{{text_content}}</p>
 	</div>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.0.5/vue.min.js"></script>

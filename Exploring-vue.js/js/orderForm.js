@@ -25,7 +25,8 @@ var demo = new Vue({
 				price: 220,
 				active: false
 			}
-		]
+		],
+		message: 'I am a helpful little message!'
 	},
 		methods: {
 			toggleActive: function(s){

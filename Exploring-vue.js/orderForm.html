@@ -5,7 +5,7 @@
 </head>
 <body>
 	<!-- v-cloak must be combined with corresponding css, such as [v-cloak] { display: none } in order to be effective-->
-	<form id="main" v-cloak>
+	<form id="main" v-cloak v-bind:title="message">
 		<h1>Services</h1>
 		<ul>
 			<li v-for="service in services" v-on:click="toggleActive(service)" v-bind:class="{ 'active': service.active}">

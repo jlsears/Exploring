@@ -37,7 +37,7 @@ var demo = new Vue({
 
 				 this.services.forEach(function(s){
 				 	if(s.active){
-				 		total += s.price;
+				 		total+= s.price;
 				 	}
 				 });
 

@@ -39,17 +39,28 @@ var demo = new Vue({
 	    }
 		]
 	},
+
+// 1) Use a computed property for more complex logic rather than just modifying in a standard template	
+// 2) Although the same result could sometimes be achieved by creating and calling a method,
+//    may be preferable to used computed property as this is cache based and will only re-evaluate when dependencies change
 computed: {
 
+	// This is what makes the real-time search and displaying/changing of results happen
 	filteredArticles: function() {
+		// Referencing the articles_arry and searchString properties above
 		var articles_array = this.articles,
 			searchString = this.searchString;
 
+			// If nothing has been entered in the search input then array is returned in its entirety
 			if(!searchString) { return articles_array; }
+
+			// Otherwise...
 
 			searchString = searchString.trim().toLowerCase();
 
+			// With filter essentially creating new array based on presence of what is currently held in searchString
 			articles_array = articles_array.filter(function(item) {
+				// the indexOf method returns -1 when value is not found... so want to return all instances not meeting that criteria
 				if(item.title.toLowerCase().indexOf(searchString) !== -1) {
 					return item;
 				}

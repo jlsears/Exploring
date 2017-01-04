@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<link href="css/instantSearch.css" rel="stylesheet"/>
 </head>
 <body>
 	<form id="main" v-cloak>
@@ -9,7 +10,7 @@
 		</div>
 		<ul>
 			<li v-for="article in filteredArticles">
-				<a v-bind:href="article.url"><img v-bind:source="article.image" /></a>
+				<a v-bind:href="article.url"><img v-bind:src="article.image" /></a>
 				<p>{{article.title}}</p>
 			</li>
 		</ul>

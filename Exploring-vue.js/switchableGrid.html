@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+	<form id="main" v-cloak>
+		<div clss="bar">
+			<a classs="list-icon" v-bind:class="{ 'active': layout == 'list'}" v-on:click="layout = 'list'"></a>
+			<a class="grid-icon" v-bind:class="{ 'active': layout == 'grid'}" v-on:click="layout = 'grid'"></a>
+		</div>
+		<ul v-if="layout = 'grid'" class="grid">
+			<li v-for="a in articles">
+				<a v-bind:href="a.url" target="_blank"><img v-bind:src="a.image.large" /></a>
+			</li>
+		</ul>
+		<ul v-if="layout = 'list'" class="list">
+			<li v-for="a in articles">
+				<a v-bind:href="a.url" target="_blank"><img v-bind:src="a.image.small" /></a>
+				<p>{{a.title}}</p>
+			</li>
+		</ul>
+	</form>
+</body>
+</html>

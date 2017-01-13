@@ -1,12 +1,12 @@
 
 var demo = new Vue({
 
-	el: '#main',
-	data: {
+    el: '#main',
+    data: {
 
-		layout: 'grid',
+        layout: 'grid',
 
-		articles: [{
+        articles: [{
         "title": "What You Need To Know About CSS Variables",
         "url": "http://tutorialzine.com/2016/03/what-you-need-to-know-about-css-variables/",
         "image": {
@@ -53,6 +53,6 @@ var demo = new Vue({
             "large": "http://cdn.tutorialzine.com/wp-content/uploads/2015/12/creating-your-first-desktop-app-with-electron.png",
             "small": "http://cdn.tutorialzine.com/wp-content/uploads/2015/12/creating-your-first-desktop-app-with-electron-150x150.png"
         }
-		}]
-	}
+      }]
+    }
 });

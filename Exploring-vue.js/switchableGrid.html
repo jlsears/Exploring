@@ -2,9 +2,10 @@
 <html>
 <head>
 	<!--Learning vue.js via tutorial from: http://tutorialzine.com/2016/03/5-practical-examples-for-learning-vue-js/ -->
+	<link rel="stylesheet" href="css/switchableGrid.css"/>
 </head>
 <body>
-	<form id="main" v-cloak>
+<form id="main" v-cloak>
 		<div clss="bar">
 			<a classs="list-icon" v-bind:class="{ 'active': layout == 'list'}" v-on:click="layout = 'list'"></a>
 			<a class="grid-icon" v-bind:class="{ 'active': layout == 'grid'}" v-on:click="layout = 'grid'"></a>
@@ -21,5 +22,8 @@
 			</li>
 		</ul>
 	</form>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.0.5/vue.min.js"></script>
+	<script type="text/javascript" src="js/switchableGrid.js"></script>
 </body>
 </html>
+

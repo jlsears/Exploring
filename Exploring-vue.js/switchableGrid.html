@@ -2,28 +2,28 @@
 <html>
 <head>
 	<!--Learning vue.js via tutorial from: http://tutorialzine.com/2016/03/5-practical-examples-for-learning-vue-js/ -->
-	<link rel="stylesheet" href="css/switchableGrid.css"/>
+	<link href="css/switchableGrid.css" rel="stylesheet"/>
 </head>
 <body>
 <form id="main" v-cloak>
-		<div clss="bar">
-			<a classs="list-icon" v-bind:class="{ 'active': layout == 'list'}" v-on:click="layout = 'list'"></a>
+		<div class="bar">
+			<a class="list-icon" v-bind:class="{ 'active': layout == 'list'}" v-on:click="layout = 'list'"></a>
 			<a class="grid-icon" v-bind:class="{ 'active': layout == 'grid'}" v-on:click="layout = 'grid'"></a>
 		</div>
-		<ul v-if="layout = 'grid'" class="grid">
+		<ul v-if="layout == 'grid'" class="grid">
 			<li v-for="a in articles">
 				<a v-bind:href="a.url" target="_blank"><img v-bind:src="a.image.large" /></a>
 			</li>
 		</ul>
-		<ul v-if="layout = 'list'" class="list">
+		<ul v-if="layout == 'list'" class="list">
 			<li v-for="a in articles">
 				<a v-bind:href="a.url" target="_blank"><img v-bind:src="a.image.small" /></a>
 				<p>{{a.title}}</p>
 			</li>
 		</ul>
 	</form>
+</form>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.0.5/vue.min.js"></script>
 	<script type="text/javascript" src="js/switchableGrid.js"></script>
 </body>
 </html>
-

@@ -37,7 +37,20 @@ var height = 200;
 
 // ***FOR CREATING COORDINATES***
 
+// domain: the boundaries within which the data lies
+// want x's to span the entire length of the dataset, so reflecting 0 to data.length
+
+// range: need to specify the boundaries within which your data can be transformed, since you're not always
+// going to have a direct mapping between the data point and an actual pixel on the screen
+
 var x = d3.scale.linear().domain([0, data.length]).range([0, width]);
+
+// domain: only want the y element to reach as high as the largest data point
+// hence returning the greatest data point for the corresponding property as the end of the domain
+
+// range: using rangeRound() instead of range() so output will be rounded to nearest whole number
+// helpful for avoiding potential fuzzy edges
+
 var y = d3.scale.linear().domain([0, d3.max(data, function(data){ return data.deaths})]).rangeRound([0, height]);
 
 

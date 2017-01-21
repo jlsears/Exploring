@@ -42,6 +42,6 @@ var quicklyNow = function(sortThis) {
 				greater.push(item);
 			}}
 		})
-		return nextArray = quicklyNow(less).concat(findPivot, quicklyNow(greater));
+		return quicklyNow(less).concat(findPivot, quicklyNow(greater));
 	}
-}
+};

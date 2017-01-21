@@ -12,7 +12,6 @@ var tryRecursion = function(x) {
 	if(x == 1) {
 		return x;
 	} else {
-		console.log("Recursing here: " + x);
 		return x * tryRecursion(x-1);
 	}
 };
@@ -25,11 +24,7 @@ var goRecursion = tryRecursion(startHere);
 
 var handyArray = [8, 48, 6, 9, 24, 32, 3, 4];
 
-var counter = 0;
-
 var quicklyNow = function(sortThis) {
-
-	counter = counter + 1;
 
 	if(sortThis.length < 2) {
 		return sortThis;

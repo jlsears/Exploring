@@ -68,13 +68,20 @@ barBasic.selectAll("rect")
 	.data(data)
 	.enter()
 	.append("svg:rect")
+	// the x and y attributes designate a position on the page set from the top, lefthand corner of the page
+	// this is the anchor point for the element
 	.attr("x", function(data, i){ return x(i); })
 	.attr("y", function(data){ return height - y(data.deaths); })
+	// height and width attributes pertain to the design of the bars themselves
 	.attr("height", function(data){ return y(data.deaths); })
 	.attr("width", barWidth)
 	.attr("fill", "purple");
 
-var xScale = d3.scale.linear().domain([0, 20]).range(([0, 100]));
+// var xScale appears to be related to an alternate approach to creating x and y coordinates that
+// is not fullly elaborated upon in the tutorial
+// removing it does not appear to impact the final bar chart
+
+//var xScale = d3.scale.linear().domain([0, 20]).range(([0, 100]));
 
 
 // ***ADDING TEXT FOR DATA POINTS TO BARS***

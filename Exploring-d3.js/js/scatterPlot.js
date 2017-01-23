@@ -77,6 +77,9 @@ var yAxis = d3.svg.axis()
 // Adding x axis to the chart
 // The translate transformation specifies a translation by x and y
 
+// as in the translate will result in shifting the element it's applied to however many more pixels
+// in the x and/or y direction
+
 main.append('g')
 	.attr('transform', 'translate(0,' + height + ')')
 	.attr('class', 'main axis date')
@@ -104,8 +107,11 @@ var g = main.append("svg:g");
 g.selectAll('scatterplot')
 	.data(yFemaleLE)
 	.enter().append("svg:circle")
+	// position the y center
 	.attr("cy", function(d){  return y(d);  })
+	// position the x center
 	.attr("cx", function(d,i){  return x(xMaleLE[i]);  })
+	// set the radius
 	.attr("r", function(d,i){  return r(rMedianIncome[i]);  })
 	.style("fill", function(d,i){  return cCountry[i];});
 

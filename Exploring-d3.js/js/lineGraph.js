@@ -141,6 +141,8 @@ g.selectAll(".yTicks")
 
 // Function used to create line 
 
+// line path data generator
+// converts our data to svg path mini-language
 var line = d3.svg.line()
 	.x(function(d,i) { return x(i); })
 	.y(function(d) { return -1 * y(d); });
@@ -148,9 +150,13 @@ var line = d3.svg.line()
 // Actually creating line by passing in array to line function
 // And appending to container group element
 
+// svg paths represent the outline of a shape that can be stroked, filled, used as a clipping path,
+// or any combination of all three... can basically be used to make any type of svg shape
+
 g.append("svg:path")
 	.transition()
 	.delay(1100)
+	// attr("d", line(data)): sending data to the accessor function which returns the svg path commands
 	.attr("d", line(data1))
 	.style("stroke", "indianred")
 	.style("stroke-width", 3)

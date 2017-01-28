@@ -12,6 +12,7 @@ namespace Core
                 raw = raw.ToUpperInvariant();
 
             var newNumber = new StringBuilder();
+
             foreach (var c in raw)
             {
                 if (" -0123456789".Contains(c))
@@ -26,10 +27,12 @@ namespace Core
             }
             return newNumber.ToString();
         }
+
         static bool Contains (this string keyString, char c)
         {
             return keyString.IndexOf(c) >= 0;
         }
+
         static int? TranslateToNumber(char c)
         {
             if ("ABC".Contains(c))

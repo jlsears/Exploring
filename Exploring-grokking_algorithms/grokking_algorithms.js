@@ -49,6 +49,8 @@ var quicklyNow = function(sortThis) {
 
 // Chapter 6: Breadth-First Search
 
+// graph consisting of nodes and edges
+
 var holdingInfo = {
 
 	"Buttercup": ["Harry", "Bubbles", "Hermione", "Ron"],
@@ -64,12 +66,16 @@ var holdingInfo = {
 
 }
 
+// In this scenario, someone with an "m" at the end of their name is a mango seller
+
 var mangoSeller = function(potentialSeller) {
 	if(potentialSeller[potentialSeller.length-1] == 'm') {
 		return true;
 	}
 	else { return false;}
 }
+
+// Determining whether Buttercup knows a mango seller
 
 var breadthFirst = function(searchables) {
 
@@ -84,6 +90,7 @@ var breadthFirst = function(searchables) {
 		if(searched.includes(person) == false) {
 
 			if(mangoSeller(person)){
+				console.log(person + " is a mango seller!");
 				return true;
 			}
 			else{

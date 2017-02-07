@@ -73,33 +73,23 @@ var mangoSeller = function(potentialSeller) {
 
 var breadthFirst = function(searchables) {
 
-	console.log("searchables: " + searchables);
 	var searchQueue = [];
-	console.log("holdingInfo.searchables: " + holdingInfo[searchables]);
-	// searchQueue = searchQueue.push(holdingInfo[searchables]);
 	searchQueue = searchQueue.concat(holdingInfo[searchables]);
 	var searched = [];
-	console.log("searchQueue at beginning: " + searchQueue.toString());
 
 	while(searchQueue) {
-		console.log("searchQue again: " + searchQueue.toString());
 
 		var person = searchQueue.shift();
 
 		if(searched.includes(person) == false) {
 
-			console.log("person is: " + person);
 			if(mangoSeller(person)){
-				console.log(person + " is a mango seller!");
 				return true;
 			}
 			else{
 				searchQueue = searchQueue.concat(holdingInfo[person]);
-				console.log("have added info to searchQue: " + holdingInfo[person]);
-				console.log("and searchQueue is now: " + searchQueue.toString());
 			}
 		}
 	}
-	console.log("No mango sellers to be found");
 	return false;
 }

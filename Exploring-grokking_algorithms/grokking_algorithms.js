@@ -153,6 +153,7 @@ var findShortest = function(underReview) {
 
 		var time = underReview[review];
 
+		// If this time is  less than currentShortest and is not in the already processed array
 		if(time < currentShortest & !processed.includes(review)){
 			currentShortest = time;
 			shortestNode = review;
@@ -166,6 +167,7 @@ var findShortest = function(underReview) {
 // (travelTimes, locations, parents)
 function quickestPath(tableReview, places, parents) {
 
+	// Finding the node with the shortest travel time that has not already been reviewed/processed
 	var lookAt = findShortest(tableReview);
 
 	while(lookAt){
@@ -177,23 +179,28 @@ function quickestPath(tableReview, places, parents) {
 		// will return an object of neighbor properties and values
 		var neighbors = places[lookAt];
 
-		console.log("neighbors is: " + JSON.stringify(neighbors));
-
+		// For each of the property names in that object/i.e., the neighbors
 		for (var prop in neighbors) {
 		
 		// Cost to get to this node from where we started + the cost to get to the neighbor we're currently reviewing
 		var newTime = timeConsideration + neighbors[prop];
 
+		// If the current travel time stored for those node is greater than the one we've calculated here
 		if(tableReview[prop] > newTime){
 
+			// Update the travel time stored for that node to the new one
 			tableReview[prop] = newTime;
+			// And update the parent recorded for that node in the parents table to the node we're currently reviewing
 			parents[prop] = lookAt;
 			}
-		}
+		};
 
+		// Add this node to the array that keeps track of nodes that have already been reviewed
 		processed.push(lookAt);
+		// Assign next node for review
 		lookAt = findShortest(tableReview);
-	}
+	};
 
+	// Returning the value of the last property in the locations table
 	return tableReview[Object.keys(tableReview)[Object.keys(tableReview).length - 1]]
 };

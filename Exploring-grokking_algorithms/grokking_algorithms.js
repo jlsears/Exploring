@@ -100,3 +100,116 @@ var breadthFirst = function(searchables) {
 	}
 	return false;
 }
+
+// Chapter 7: Dijkstra's Algorithm
+
+// Graph table -- where the neighbors will be pulled from
+
+/*var locations = {
+
+	"Start": [["A", 6], ["B", 2]],
+	"A": ["Finish", 1],
+	"B": [["A", 3], ["Finish", 5]],
+	"Finish": []
+
+}
+*/
+
+var locations = {
+
+	"Start": {
+		"A": 6,
+		"B": 2
+	},
+	"A": {
+		"Finish": 1
+	} ,
+	"B": {
+		"A": 3,
+		"Finish": 5
+	} ,
+	"Finish": []
+
+}
+
+// Travel time/cost table
+// How long it takes to get to a particular node from the start
+// We are dealing with three nodes in addition to Start
+
+var travelTimes = {
+	"A": 6,
+	"B": 2,
+	"Finish": Infinity
+}
+
+// Parent table
+
+var parents = {
+	"A": "Start",
+	"B": "Start",
+	"Finish": ""
+}
+
+var processed = [];
+
+// Find the shortest travel time that has not already been processed
+
+var findShortest = function(underReview) {
+
+	var currentShortest = Infinity;
+	var shortestNode = "";
+
+	for(review in underReview){
+
+		var time = underReview[review];
+
+		if(time < currentShortest & !processed.includes(review)){
+			currentShortest = time;
+			shortestNode = review;
+		}
+	}
+	return shortestNode;
+};
+
+// Implementing Dijkstra's algorithm/shortest way to the end now
+
+// (travelTimes, locations, parents)
+function quickestPath(tableReview, places, parents) {
+
+	var lookAt = findShortest(tableReview);
+
+	while(lookAt){
+
+		// Finding that node's cost/travel time
+		var timeConsideration = tableReview[lookAt];
+		
+		// Finding that node's neighbors
+		
+	// will return an object of neighbor properties and values
+			var neighbors = places[lookAt];
+
+			console.log("neighbors is: " + JSON.stringify(neighbors));
+
+			for (var prop in neighbors) {
+
+		  //console.log("prop is: " + prop + " and value is: " + neighbors[prop]);
+			
+			// Cost to get to this node from where we started + the cost to get to the neighbor we're currently reviewing
+			var newTime = timeConsideration + neighbors[prop];
+
+			if(tableReview[prop] > newTime){
+
+				tableReview[prop] = newTime;
+				parents[prop] = lookAt;
+			}
+		}
+
+		processed.push(lookAt);
+		lookAt = findShortest(tableReview);
+		}
+		console.log("processed array: " + processed);
+		console.log("parents table: " + JSON.stringify(parents));
+		console.log("places table: " + JSON.stringify(places));
+		console.log("travelTimes table: " + JSON.stringify(tableReview));
+		return tableReview[Object.keys(tableReview)[Object.keys(tableReview).length - 1]]
+};

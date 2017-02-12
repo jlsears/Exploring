@@ -103,17 +103,7 @@ var breadthFirst = function(searchables) {
 
 // Chapter 7: Dijkstra's Algorithm
 
-// Graph table -- where the neighbors will be pulled from
-
-/*var locations = {
-
-	"Start": [["A", 6], ["B", 2]],
-	"A": ["Finish", 1],
-	"B": [["A", 3], ["Finish", 5]],
-	"Finish": []
-
-}
-*/
+// Graph table: where the neighbors will be pulled from
 
 var locations = {
 
@@ -171,7 +161,7 @@ var findShortest = function(underReview) {
 	return shortestNode;
 };
 
-// Implementing Dijkstra's algorithm/shortest way to the end now
+// Implementing Dijkstra's algorithm/shortest travel time to the ending point now
 
 // (travelTimes, locations, parents)
 function quickestPath(tableReview, places, parents) {
@@ -184,32 +174,26 @@ function quickestPath(tableReview, places, parents) {
 		var timeConsideration = tableReview[lookAt];
 		
 		// Finding that node's neighbors
+		// will return an object of neighbor properties and values
+		var neighbors = places[lookAt];
+
+		console.log("neighbors is: " + JSON.stringify(neighbors));
+
+		for (var prop in neighbors) {
 		
-	// will return an object of neighbor properties and values
-			var neighbors = places[lookAt];
+		// Cost to get to this node from where we started + the cost to get to the neighbor we're currently reviewing
+		var newTime = timeConsideration + neighbors[prop];
 
-			console.log("neighbors is: " + JSON.stringify(neighbors));
+		if(tableReview[prop] > newTime){
 
-			for (var prop in neighbors) {
-
-		  //console.log("prop is: " + prop + " and value is: " + neighbors[prop]);
-			
-			// Cost to get to this node from where we started + the cost to get to the neighbor we're currently reviewing
-			var newTime = timeConsideration + neighbors[prop];
-
-			if(tableReview[prop] > newTime){
-
-				tableReview[prop] = newTime;
-				parents[prop] = lookAt;
+			tableReview[prop] = newTime;
+			parents[prop] = lookAt;
 			}
 		}
 
 		processed.push(lookAt);
 		lookAt = findShortest(tableReview);
-		}
-		console.log("processed array: " + processed);
-		console.log("parents table: " + JSON.stringify(parents));
-		console.log("places table: " + JSON.stringify(places));
-		console.log("travelTimes table: " + JSON.stringify(tableReview));
-		return tableReview[Object.keys(tableReview)[Object.keys(tableReview).length - 1]]
+	}
+
+	return tableReview[Object.keys(tableReview)[Object.keys(tableReview).length - 1]]
 };

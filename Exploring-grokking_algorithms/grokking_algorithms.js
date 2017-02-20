@@ -239,33 +239,18 @@ function greedyAlg(stationsReviewing, statesNeeded2) {
 		for(var st in stationsReviewing) {
 
 			forLoopCounter = forLoopCounter +1;
-			console.log("iterations through for loop: " + forLoopCounter);
-			console.log("st is: " + st);
-			console.log("stationsReviewing in for loop - 3rd: " + JSON.stringify(stationsReviewing[st]));
-			//console.log("STATIONSREVIEWING: " + JSON.stringify(stationsReviewing));
 
 			var statesWeWant = [];
 
-			console.log("statesCovered before looping through states starts: " + statesCovered);
-
 			// LOOPING THROUGH STATES IN THOSE STATIONS
 			for(var actualState in stationsReviewing[st]) {
-				console.log("actualState: " + actualState);
 				
-				// actual state
-				console.log("Really actualState: " + stationsReviewing[st][actualState]);
-
 				// If that station has a state we need, push it into the statesWeWant array
 				if(statesNeeded2.includes(stationsReviewing[st][actualState]) && !statesCovered.includes(stationsReviewing[st][actualState])){
 
 					statesWeWant.push(stationsReviewing[st][actualState]);
-					console.log("LOOK just pushed: " + stationsReviewing[st][actualState]);
 				};
 			} // end for loop looking to see if states we want are listed
-
-
-			console.log("statesWeWant after looping: " + statesWeWant);
-			console.log("statesCovered before if comparison: " + statesCovered);
 
 			// ****DETERMINING BEST STATION****
 
@@ -274,14 +259,8 @@ function greedyAlg(stationsReviewing, statesNeeded2) {
 
 				// If it does, declare it the new best station
 				bestStation = st;
-				console.log("***bestStation declared: " + st);
 				statesCovered = statesWeWant;
 			} // end if comparison
-
-/*			if(statesNeeded2.length == 0) {
-				return finalStations;
-			}*/
-			console.log("****For loop of stations IS DONE****");
 		} // end for loop on stationsReviewing
 
 		// **GO START REVIEWING ANOTHER STATION NOW
@@ -290,26 +269,14 @@ function greedyAlg(stationsReviewing, statesNeeded2) {
 
 		// Removing our latest selected states from statesNeeded
 		for(var remove in statesCovered) {
-
-			console.log("remove is: " + remove + " and " + statesCovered[remove]);
+			
 			statesNeeded.splice(statesNeeded.indexOf(statesCovered[remove]),1);
 		}
 
-		console.log("statesNeeded is now: " + statesNeeded);
-		console.log("LENGTH OF STATES NEEDED IS: " + statesNeeded.length);
-
 		finalStations = finalStations.concat(bestStation);
 		statesLength = statesNeeded2.length;
-		//statesCovered = statesCovered.concat(statesWeWant);
-		console.log("***finalStations after looping stations: " + finalStations);
 
-		// AS LONG AS STATESNEEDED > 0 CONTINUE WHILE LOOP NOW
-		console.log("***HITTING END OF WHILE LOOP");
 	} // end while loop
-
-		console.log("statesNeeded at the end: " + statesNeeded);
-		//finalStations.concat(bestStation);
-		console.log("finalStations at the end: " + finalStations);
 
 	return finalStations;
 } // end function

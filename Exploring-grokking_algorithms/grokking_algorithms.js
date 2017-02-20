@@ -220,13 +220,13 @@ var stations = {
 	"kfive": ["ca", "az"]
 };
 
-var finalStations = [];
 
 function greedyAlg(stationsReviewing, statesNeeded2) {
 
+	var finalStations = [];
 	var whileLoopCounter = 0;
 
-	while(statesNeeded.length > 0 || whileLoopCounter < 10) {
+	while(statesNeeded.length > 0) {
 
 		whileLoopCounter = whileLoopCounter + 1;
 		var bestStation = "";
@@ -238,9 +238,6 @@ function greedyAlg(stationsReviewing, statesNeeded2) {
 		// LOOPING THROUGH STATIONS	
 		for(var st in stationsReviewing) {
 
-			console.log("************NEW FOR LOOP***************");
-			console.log("statesNeeded2 at beginning: " + statesNeeded2);
-			console.log("LENGTH OF statesNeeded2 at beginning: " + statesNeeded2.length);
 			forLoopCounter = forLoopCounter +1;
 			console.log("iterations through for loop: " + forLoopCounter);
 			console.log("st is: " + st);
@@ -281,9 +278,9 @@ function greedyAlg(stationsReviewing, statesNeeded2) {
 				statesCovered = statesWeWant;
 			} // end if comparison
 
-			if(statesNeeded2.length == 0) {
+/*			if(statesNeeded2.length == 0) {
 				return finalStations;
-			}
+			}*/
 			console.log("****For loop of stations IS DONE****");
 		} // end for loop on stationsReviewing
 

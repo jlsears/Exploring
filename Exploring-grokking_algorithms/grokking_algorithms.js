@@ -309,27 +309,17 @@ function dynamicAlg(objectsSelect, knapsackWeight){
   	gridArray[k] = [];
   }
 
-  console.log("gridArray after instantiating: " + gridArray);
-
   // to iterate through each object
   for(var i = 0; i < currentObjects.length; i++){
-
-  	console.log("*******************NEW i value*************************");
-    console.log("in the i loop for: " + currentObjects[i][0]);
-    console.log("and value: " + currentObjects[i][2]);
 
     // to iterate through each knapsacksize for the object under review
 
     for(var j = 1; j <= knapsackSize; j++){
 
-      console.log("**in j loop looking at size: " + j + " *************");
-
       // this function will need to return the new object/value combo that will become the latest
       // element added to the multidimensional array gridArray
 
       function sussOutMax(prev, currentItem){
-      	console.log("passing through as currentItem: " + currentItem);
-      	console.log("gridArray at this point: " + gridArray);
 
         // var to hold sum calculating below and corresponding object names
         var findObj;
@@ -337,28 +327,12 @@ function dynamicAlg(objectsSelect, knapsackWeight){
         var resultCalculation;
         var lastRow = i-1;
         var neededColumn = j - currentItem[1];
-        console.log("neededColumn at initial assignment: " + neededColumn);
         var isNegative = neededColumn.toString().includes("-");
         var tempLastSquare;
         var totalSize;
-        console.log("what is i: " + i);
-
-        if(i > 0){
-        	console.log(gridArray[i-1]);
-        	console.log(gridArray[i-1][j-1]);
-        	console.log("this element tho: " + gridArray[i-1][j-1][1]);
-        }
-/*        console.log("getting for isNegative: " + isNegative);
-
-        console.log("lastSquare shows as: " + lastSquare);
-        console.log("ELSE IF REVIEW currentItem[1] " + currentItem[1]);
-        console.log("ELSE IF REVIEW currentItem[2] " + currentItem[2]);
-        console.log("ELSE IF REVIEW lastSquare[1] " + lastSquare[1]);*/
-
 
         // if we're on the first row/object
         if(i == 0) {
-        	console.log("returning first lastSquare");
         	return lastSquare;
         }
 
@@ -368,75 +342,45 @@ function dynamicAlg(objectsSelect, knapsackWeight){
         else if(currentItem[1] > j){
 
         	tempLastSquare = [gridArray[i-1][j][0] ,gridArray[i-1][j][1]];
-        	console.log("returning prior largest for this size: " + tempLastSquare);
         	return tempLastSquare;
-
         }
 
         //else if(currentItem[1] <= j && currentItem[2] > gridArray[i-1][j-1][1]){
         else if(currentItem[1] <= j){
-        	console.log("inside first else if to do simple check");
 
         	tempLastSquare = [currentItem[0], currentItem[2]];
-        	console.log("returning tempLastSquare " + tempLastSquare + " for initial else if");
-        	//return lastSquare;
 
         	if(j > 1 && !isNegative) {
-	         	console.log("hitting the else if for determining resultCalculation");
-	         	console.log("lastRow: " + lastRow);
-	         	console.log("currentItem[1]: " + currentItem[1]);
-	         	console.log("neededColumn: " + neededColumn);
-	         	console.log("the item I should be grabbing from gridArray: " + gridArray[lastRow][neededColumn][0]);
-	         	console.log("and the tempLastSquare[1] comparing to: " + tempLastSquare[1]);
 	          
 	          findObj = currentItem[0] + ", " + gridArray[lastRow][neededColumn][0]; 
-	          //findValue = currentItem[2] + gridArray[i-1][j - currentItem[1][1]];
 	          findValue = Number(currentItem[2]) + Number([gridArray[i-1][j - currentItem[1]][1]]);
-	         	console.log("the findValue getting calculated: " + findValue);
-
 	          resultCalculation = [findObj, findValue];        
-	          console.log("1st part totalSize: " + currentItem[1]);
-	          console.log("2nd part totalSize: " + j-currentItem[1]);
 	          totalSize = currentItem[1] + (j-currentItem[1]);
-	          console.log("showing totalSize: " + totalSize);
 
 		        // need to compare value from new evaluation to value of prior max... the largest will determine what is returned
 		        if(findValue > tempLastSquare[1] && currentItem[1] < j ){
 		          lastSquare = resultCalculation;
-		          console.log("returning resultCalculation from sussOutMax: " + resultCalculation);
 		          return resultCalculation;
 		        } else{
 		        	lastSquare = tempLastSquare;
-		        	console.log("returning second tempLastSquare: " + lastSquare);
 		          return lastSquare;
 		        }
         } // end if
         return tempLastSquare;
-        //return tempLastSquare;
         } // end of else if checking for basic fit and increased value
 
         else{
-
-        	console.log("returning the gridArray item for this column prior row: " + gridArray[i-1][j]);
-        	//return lastSquare;
         	return gridArray[i-1][j];
-        	//return [gridArray[i-1][j][0], gridArray[i-1][j][1]];
         }
        } // end sussOutMax function
-
-      console.log("getting towards first if statement");
 
       // and for that object, iterate through each knapsack size, storing the result of the evaluation
       // in the corresponding grid space
 
       // getting the first square in gridArray setup
       if(i == 0 && j == 1){
-      	console.log("inside first if statement");
-        // assign first object name and value to first spot in gridArray
         gridArray[i][j-1] = [currentObjects[i][0], currentObjects[i][2]];
         lastSquare = [currentObjects[i][0], currentObjects[i][2]];
-        console.log("have assigned first element: " + gridArray[i][j]);
-        console.log("and individually, gridArray[i][j][0]: " + gridArray[i][j-1][0]);
 
       // evaluations for all other subsequent comparisons here
       } else{
@@ -447,8 +391,5 @@ function dynamicAlg(objectsSelect, knapsackWeight){
     } // end second for loop
    }// end first for loop
 
-   console.log("*****APPROACHING FINAL RETURN VALUE*****");
-  //console.log("supposed return value: " + gridArray[gridArray.length-1]);
-  console.log("supposed return value: " + lastSquare);
   return lastSquare;
 }

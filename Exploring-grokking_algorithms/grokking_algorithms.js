@@ -296,6 +296,7 @@ var currentObjects = [["guitar", 1, 1500], ["stereo", 4, 3000], ["laptop", 3, 20
 // first arg: currentObjects... sec arg: the number weight of the bag
 function dynamicAlg(objectsSelect, knapsackWeight){
 
+	// Basic measurements
   var knapsackSize = knapsackWeight; // columns for 1 through this number
   var numberObjects = currentObjects.length;
 
@@ -313,10 +314,9 @@ function dynamicAlg(objectsSelect, knapsackWeight){
   for(var i = 0; i < currentObjects.length; i++){
 
     // to iterate through each knapsacksize for the object under review
-
     for(var j = 1; j <= knapsackSize; j++){
 
-      // this function will need to return the new object/value combo that will become the latest
+      // the sussOutMax function will need to return the new object/value combo that will become the latest
       // element added to the multidimensional array gridArray
 
       function sussOutMax(prev, currentItem){
@@ -326,7 +326,9 @@ function dynamicAlg(objectsSelect, knapsackWeight){
         var findValue;
         var resultCalculation;
         var lastRow = i-1;
+        // current knapsack size minus the size of the item currently under evaluation
         var neededColumn = j - currentItem[1];
+        // positive or negative value will indicate whether such a column actually exists
         var isNegative = neededColumn.toString().includes("-");
         var tempLastSquare;
         var totalSize;
@@ -336,43 +338,49 @@ function dynamicAlg(objectsSelect, knapsackWeight){
         	return lastSquare;
         }
 
+        // For any evaluations occurring beyond the first row
         // need to evaluate value of current item + whatever can be filled into the remaining space
         // if there is an acceptable filler square... get value of that filler square
 
+        // if the current item's size is too big for the current knapsack size
         else if(currentItem[1] > j){
 
+        	// return the value of this column/knapsack size for the previous row
         	tempLastSquare = [gridArray[i-1][j][0] ,gridArray[i-1][j][1]];
         	return tempLastSquare;
         }
 
-        //else if(currentItem[1] <= j && currentItem[2] > gridArray[i-1][j-1][1]){
-        else if(currentItem[1] <= j){
+        // evaluation needing to occur if the current item's size is not too big for the current knapsack size
+        else{
 
+        	// capture current item's name and value
         	tempLastSquare = [currentItem[0], currentItem[2]];
 
+        	// is there a grid square we can look to in order to add an additional item/value to this knapsack?
         	if(j > 1 && !isNegative) {
-	          
-	          findObj = currentItem[0] + ", " + gridArray[lastRow][neededColumn][0]; 
+
+	          // combine the current item name and that other square's item name
+	          findObj = currentItem[0] + ", " + gridArray[lastRow][neededColumn][0];
+	          // combine the current item value and that other square's item value 
 	          findValue = Number(currentItem[2]) + Number([gridArray[i-1][j - currentItem[1]][1]]);
-	          resultCalculation = [findObj, findValue];        
+	          // capture the above information together here
+	          resultCalculation = [findObj, findValue];
+	          // capture the total size of both of those items        
 	          totalSize = currentItem[1] + (j-currentItem[1]);
 
 		        // need to compare value from new evaluation to value of prior max... the largest will determine what is returned
-		        if(findValue > tempLastSquare[1] && currentItem[1] < j ){
+		        if(findValue > gridArray[i-1][j-currentItem[1]][1] && currentItem[1] < j ){
 		          lastSquare = resultCalculation;
-		          return resultCalculation;
+		          return lastSquare;
 		        } else{
 		        	lastSquare = tempLastSquare;
 		          return lastSquare;
 		        }
         } // end if
+        // if the above criteria for evaluation is not met, return the name and value of the current item under evaluation
         return tempLastSquare;
         } // end of else if checking for basic fit and increased value
-
-        else{
-        	return gridArray[i-1][j];
-        }
-       } // end sussOutMax function
+       } // ***************end sussOutMax function***************
 
       // and for that object, iterate through each knapsack size, storing the result of the evaluation
       // in the corresponding grid space

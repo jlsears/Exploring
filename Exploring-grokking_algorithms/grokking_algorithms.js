@@ -2,7 +2,12 @@
 // A space for trying out algorithms as examined in the book "Grokking Algorithms," by Aditya Bhargava
 // https://www.manning.com/books/grokking-algorithms
 
+//********************************************************************************************
+
 // Chapter 3: Recursion
+
+//********************************************************************************************
+
 
 // Remember to think "turtles almost all the way up" in this case
 
@@ -47,7 +52,12 @@ var quicklyNow = function(sortThis) {
 };
 
 
+//********************************************************************************************
+
 // Chapter 6: Breadth-First Search
+
+//********************************************************************************************
+
 
 // graph consisting of nodes and edges
 
@@ -101,7 +111,13 @@ var breadthFirst = function(searchables) {
 	return false;
 }
 
+
+//********************************************************************************************
+
 // Chapter 7: Dijkstra's Algorithm
+
+//********************************************************************************************
+
 
 // Graph table: where the neighbors will be pulled from
 
@@ -206,7 +222,12 @@ function quickestPath(tableReview, places, parents) {
 };
 
 
+//********************************************************************************************
+
 // Chapter 8: Greedy Algorithms
+
+//********************************************************************************************
+
 
 var statesNeeded = ["mt", "wa", "or", "id", "nv", "ut"];
 var statesLength = statesNeeded.length;
@@ -282,7 +303,12 @@ function greedyAlg(stationsReviewing, statesNeeded2) {
 } // end function
 
 
+//********************************************************************************************
+
 // Chapter 9: Dynamic Programming
+
+//********************************************************************************************
+
 
 // Knapsack problem
 

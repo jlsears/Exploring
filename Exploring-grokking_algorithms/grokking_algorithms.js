@@ -575,8 +575,7 @@ function substringProblem(wordEntered, wordsCompare){
 		console.log("======OUT OF BOTH J AND I LOOPS======");
 		// maxOfGrid = Math.max(comparisonGrid);
 
-		var unpackingArray = Array.prototype.concat.apply([], comparisonGrid).sort();
-		var getMax = unpackingArray.pop();
+		var getMax = Array.prototype.concat.apply([], comparisonGrid).sort().pop();
 		console.log("%%%%%%%%result of getMax: " + getMax);
 		reviewingTotals[k] = [wordsCompare[k], getMax];
 		console.log("%%%%%%%%result of reviewingTotals[k]: " + reviewingTotals[k]);		

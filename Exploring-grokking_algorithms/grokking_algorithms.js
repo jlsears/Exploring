@@ -438,19 +438,13 @@ function dynamicAlg(objectsSelect, knapsackWeight){
 
 var wordTypedIn = "hish";
 var wordsEvaluate = ["vista", "fish"];
-var counter = 0;
 
 function substringProblem(wordEntered, wordsCompare){
 
-	console.log("arguments: " + wordEntered + " and " + wordsCompare);
 	// variable for word comparison array
-
 	var comparisonList = new Array();
 
-	// variable for "left" word
-
 	// create multidimensional array to hold a) word, and b) max value for each word up for comparison
-
 	var reviewingTotals = new Array();
 
 
@@ -460,29 +454,19 @@ function substringProblem(wordEntered, wordsCompare){
 
 	// for loop to iterate through each word passed in as words for comparison array argument (k)
 
-	for(var k = 0; k < wordsCompare.length; k++){
-		console.log("+++++++++++++++++++++beginning of k loop+++++++++++++++++++++++++++");
-
-		console.log("showing as wordsCompare: " + wordsCompare);
-		
+	for(var k = 0; k < wordsCompare.length; k++){		
 
 		// current word in the array that we're looking at for comparison
 		var currentWordEvaluate = wordsCompare[k];
-		console.log("and currentWordEvaluate: " + currentWordEvaluate);
 
 		// variable for "top" word/comparison word
-		// Will update this after have looped for a word to hold the max letter/number pair
-
-		var maxOfGrid;
+		// Will update this after have looped to find the max letter/number pair at the end
 		var topSubstring;
 
-		// make a multidimensional array to be the comparison grid
-
+		// make a multidimensional array to perform as the comparison grid
 		var comparisonGrid = new Array();
 
-
 		// instantiate each row in this array: one row per letter in wordEntered
-
 		for(var a = 0; a < wordEntered.length; a++){
 			comparisonGrid[a] = [];
 		}
@@ -492,55 +476,38 @@ function substringProblem(wordEntered, wordsCompare){
 		// ****************************************************
 
 		// for each letter in wordEntered (i)
-
 		for(var i = 0; i < wordEntered.length; i++){
-			console.log(">>>>>>>>>>>>>>>>>>>>>>>inside the i for loop>>>>>>>>>>>>>>>>>>>>>>>");
-			console.log("wordEntered[i] for i loop is: " + wordEntered[i] + " and i is: " + i);
 
 			// iterate through each of the letters in the word up for evaluation (j)
 			for(var j = 0; j < currentWordEvaluate.length; j++){
-				counter = counter + 1;
-				console.log("*****************beginning of j loop*****************************");
-				console.log("showing as typed wordEntered: " + wordEntered);
-				//console.log("showing as currentWordEvaluate: " + currentWordEvaluate);
-				console.log("current letter we're reviewing in left column: " + wordEntered[i]);
-				console.log("and the current letter reviewing in top row: " + currentWordEvaluate[j]);
-				console.log("*****************************************************************");
 
 				// A) if it's the first row
 				if(i == 0){
 
 					// if the two letters match, set value of cell equal to 1
 					if(wordEntered[i] == currentWordEvaluate[j]){
-						// cell [i][j] = 1
 						comparisonGrid[i][j] = 1;
-						console.log("1st step for 1: " + comparisonGrid[i][j]);
 					}
 
 					else{
-						// otherwise, set value of cell to 0
 						comparisonGrid[i][j] = 0;
-						console.log("1st step for 0: " + comparisonGrid[i][j]);
 					}
 				} // end if i == 0
 
 				// B) all other rows
 				else{
 
-					// a) if j is 0/it's the first column
+					// a) if we're looking at the first column
 					if(j == 0){
 
 						// if the two letters match, set value of cell equal to 1
 						if(wordEntered[i] == currentWordEvaluate[j]){
-								// cell [i][j] = 1
 								comparisonGrid[i][j] = 1;
-								console.log("2nd step for 1: " + comparisonGrid[i][j]);
 						}
 
 						else{
 							// otherwise, set value of cell to 0
 							comparisonGrid[i][j] = 0;
-							console.log("2nd step for 0: " + comparisonGrid[i][j]);
 						}
 
 					} // end if j = 0
@@ -550,63 +517,33 @@ function substringProblem(wordEntered, wordsCompare){
 						// if the two letters match
 						if(wordEntered[i] == currentWordEvaluate[j]){
 							// set value of cell equal to value of top left neighbor
-							// var cell[i][j] = cell[i-1][j-1] + 1
-							console.log("preparing to assign to grid: " + comparisonGrid[i-1][j-1] + 1);
 							comparisonGrid[i][j] = comparisonGrid[i-1][j-1] + 1;
-							console.log("34d step for 1: " + comparisonGrid[i][j]);
 						}
 
 						else{
 							// otherwise, set value of cell to 0
 							comparisonGrid[i][j] = 0;
-							console.log("3rd step for 0: " + comparisonGrid[i][j]);
 						}
 					}
-
 				}// end else
-				console.log("comparisonGrid at end of current j loop: " + comparisonGrid);
-				if(counter == 100){ break }; 
 			} // end for loop j
-			console.log("comparisonGrid at the end of i loop: " + comparisonGrid);
 		} // end for loop i
 
 		// after looping through the two words being compared in their entirety, find value of largest/max cell
 		// save this word and max value in the multidimensional array created for holding totals
-		console.log("======OUT OF BOTH J AND I LOOPS======");
-		// maxOfGrid = Math.max(comparisonGrid);
-
 		var getMax = Array.prototype.concat.apply([], comparisonGrid).sort().pop();
-		console.log("%%%%%%%%result of getMax: " + getMax);
 		reviewingTotals[k] = [wordsCompare[k], getMax];
-		console.log("%%%%%%%%result of reviewingTotals[k]: " + reviewingTotals[k]);		
-
-		// reviewingTotals[k] = [wordsCompare[k] , maxOfGrid];
 
 		// clear out comparisonGrid
-		console.log("hitting step to clear out comparisonGrid!!!!!!!!!!!!!!!!!!!!!!!");
 		for(var a = 0; a < wordEntered.length; a++){
 			comparisonGrid[a] = [];
 		}
-
-		// move onto the next word to evaluate
-		//if(counter == 100){ break; }
-
-
+		// time to move onto the next word to evaluate
 	} // end for loop k
 
-		// once all the words have been looped through, find the max word/value pair in the array holding those totalSize
-		//topSubstring = Math.max(reviewingTotals);
-
-/*		topSubstring = reviewingTotals.sort(function(c,d){
-			console.log("c[1]: " + c[1] + " and d[1]: " + d[1]);
-			return c[1]-d[1];
-		})*/
-
+		// once all the words have been looped through, find the max value out of all words evaluated
 		topSubstring = reviewingTotals.sort(function (c, d){ return d[1] - c[1]; })[0][0];
 
-		console.log("reviewingTotals at the end: " + reviewingTotals);
-		console.log("topSubstring: " + topSubstring);
-
-		// return that word
+		// and return the corresponding word
 		return topSubstring;
 }

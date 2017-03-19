@@ -434,8 +434,7 @@ function dynamicAlg(objectsSelect, knapsackWeight){
 // Longest common substring problem
 //************************************************************
 
-// arguments: word being evaluated, words for comparison (array?)
-
+// entering as arguments: word/search term initially entered, words to evaluate for longest substring/likeness
 var wordTypedIn = "hish";
 var wordsEvaluate = ["vista", "fish"];
 
@@ -446,7 +445,6 @@ function substringProblem(wordEntered, wordsCompare){
 
 	// create multidimensional array to hold a) word, and b) max value for each word up for comparison
 	var reviewingTotals = new Array();
-
 
 	// ****************************************************
 	// *******************EACH WORD IN ARRAY***************
@@ -490,6 +488,7 @@ function substringProblem(wordEntered, wordsCompare){
 					}
 
 					else{
+						// otherwise, set value of cell to 0
 						comparisonGrid[i][j] = 0;
 					}
 				} // end if i == 0
@@ -529,7 +528,7 @@ function substringProblem(wordEntered, wordsCompare){
 			} // end for loop j
 		} // end for loop i
 
-		// after looping through the two words being compared in their entirety, find value of largest/max cell
+		// after looping through the words being compared in their entirety, find value of largest/max cell
 		// save this word and max value in the multidimensional array created for holding totals
 		var getMax = Array.prototype.concat.apply([], comparisonGrid).sort().pop();
 		reviewingTotals[k] = [wordsCompare[k], getMax];

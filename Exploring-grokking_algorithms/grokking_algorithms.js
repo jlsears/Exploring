@@ -546,3 +546,130 @@ function substringProblem(wordEntered, wordsCompare){
 		// and return the corresponding word
 		return topSubstring;
 }
+
+
+//************************************************************
+// Longest common subsequence problem
+//************************************************************
+
+// entering as arguments: word/search term initially entered, words to evaluate for longest substring/likeness
+var searchTerm = "short";
+var wordsReviewing = ["fort", "fish"];
+
+function subsequenceProblem(wordEntered, wordsCompare){
+
+	// variable for word comparison array
+	var comparisonList = new Array();
+
+	// create multidimensional array to hold a) word, and b) max value for each word up for comparison
+	var reviewingTotals = new Array();
+
+	// ****************************************************
+	// *******************EACH WORD IN ARRAY***************
+	// ****************************************************
+
+	// for loop to iterate through each word passed in as words for comparison array argument (k)
+
+	for(var k = 0; k < wordsCompare.length; k++){		
+
+		// current word in the array that we're looking at for comparison
+		var currentWordEvaluate = wordsCompare[k];
+
+		// variable for "top" word/comparison word
+		// Will update this after have looped to find the max letter/number pair at the end
+		var topSubstring;
+
+		// make a multidimensional array to perform as the comparison grid
+		var comparisonGrid = new Array();
+
+		// instantiate each row in this array: one row per letter in wordEntered
+		for(var a = 0; a < wordEntered.length; a++){
+			comparisonGrid[a] = [];
+		}
+
+		// ****************************************************
+		// *******************MAIN ITERATION*******************
+		// ****************************************************
+
+		// for each letter in wordEntered (i)
+		for(var i = 0; i < wordEntered.length; i++){
+
+			// iterate through each of the letters in the word up for evaluation (j)
+			for(var j = 0; j < currentWordEvaluate.length; j++){
+
+				// A) if it's the first row
+				if(i == 0){
+
+					// if the two letters match, set value of cell equal to 1
+					if(wordEntered[i] == currentWordEvaluate[j]){
+						comparisonGrid[i][j] = 1;
+					}
+
+					// if they don't match and it's also the first column
+					else if(j == 0){
+						comparisonGrid[i][j] = 0;
+					}
+
+					else{
+						// otherwise, set value of cell to 0
+						//comparisonGrid[i][j] = 0;
+						comparisonGrid[i][j] = Math.max(comparisonGrid[i][j-1], 0);
+					}
+				} // end if i == 0
+
+				// B) all other rows
+				else{
+
+					// a) if we're looking at the first column
+					if(j == 0){
+
+						// if the two letters match, set value of cell equal to above neighbor + 1
+						if(wordEntered[i] == currentWordEvaluate[j]){
+								// value would theoretically be set to the value of the upper lefthand neighbor + 1...
+								// so need a workaround...
+								comparisonGrid[i][j] = comparisonGrid[i-1][j] + 1;
+						}
+
+						else{
+							// otherwise, set value of cell to above neighbor
+							comparisonGrid[i][j] = comparisonGrid[i-1][j];
+						}
+
+					} // end if j = 0
+
+					// b) all other columns
+					else{					
+						// if the two letters match
+						if(wordEntered[i] == currentWordEvaluate[j]){
+							// set value of cell equal to value of the upper lefthand neighbor +1
+							comparisonGrid[i][j] = comparisonGrid[i-1][j-1] + 1;
+						}
+
+						else{
+							// otherwise, set value of cell to max of upper or lefthand neighbor
+							comparisonGrid[i][j] = Math.max(comparisonGrid[i][j-1], comparisonGrid[i-1][j]);
+						}
+					}
+				}// end else
+			} // end for loop j
+		} // end for loop i
+
+		// after looping through the words being compared in their entirety, find value of largest/max cell
+		// save this word and max value in the multidimensional array created for holding totals
+		var getMax = Array.prototype.concat.apply([], comparisonGrid).sort().pop();
+		reviewingTotals[k] = [wordsCompare[k], getMax];
+
+		// clear out comparisonGrid
+		for(var a = 0; a < wordEntered.length; a++){
+			comparisonGrid[a] = [];
+		}
+		// time to move onto the next word to evaluate
+	} // end for loop k
+
+		// once all the words have been looped through, find the max value out of all words evaluated
+		topSubstring = reviewingTotals.sort(function (c, d){ return d[1] - c[1]; })[0][0];
+
+		// and return the corresponding word
+		return topSubstring;
+}
+

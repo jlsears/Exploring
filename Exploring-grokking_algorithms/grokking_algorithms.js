@@ -684,7 +684,6 @@ function subsequenceProblem(wordEntered, wordsCompare){
 // Classifying oranges vs grapefruit
 //************************************************************
 
-
 // Object for fruit
 
 var manyFruit = {
@@ -710,26 +709,12 @@ var nearestNeighbor = function(currentList, evaluating) {
 
   var distanceArray = new Array();
 
-  console.log("fruit object length: " + Object.keys(currentList).length);
-
-/*  for(var i = 0; i < Object.keys(currentList).length; i++){
-    distanceArray[i] = [];
-  }*/
-
   for(listy in currentList){
 
     // (size - size) squared + (redness - redness) squared
     // then find the square root of that number -- that is the distance
     var findingDistance = Math.round(Math.sqrt(Math.pow(currentList[listy].size - evaluating["size"], 2) + Math.pow(currentList[listy].redness - evaluating["redness"], 2)));
-    
-    console.log("listy: " + listy);
-    //console.log("currentList: " + JSON.stringify(currentList));
-    console.log("one property: " + JSON.stringify(currentList[listy].size));
-    console.log("two property: " + evaluating["size"]);
-
-
-    console.log("findingDistance: " + findingDistance);
-    
+        
     // output will be saved into a multidimensional array containing: type, distance
     distanceArray.push([currentList[listy].type , findingDistance]);
   } // end for statement
@@ -739,13 +724,9 @@ var nearestNeighbor = function(currentList, evaluating) {
     // either have counter variable for each type, or see if there's a handy js method that will deduce this
     // return that type as the answer  
 
-  console.log("showing for distanceArray: " + distanceArray);
   var findingThreeMax = distanceArray.sort(function (c, d){ return c[1] - d[1]; });
   
   var threeMax = [findingThreeMax[0], findingThreeMax[1], findingThreeMax[2]];
-
-  console.log("sorted distanceArray: " + distanceArray);
-  console.log("showing for threeMax: " + threeMax);
 
   var orangeCounter = 0;
   var grapefruitCounter = 0;

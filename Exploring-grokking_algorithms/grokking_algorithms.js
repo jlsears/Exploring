@@ -726,7 +726,7 @@ var nearestNeighbor = function(currentList, evaluating) {
 
   var findingThreeMax = distanceArray.sort(function (c, d){ return c[1] - d[1]; });
   
-  var threeMax = [findingThreeMax[0], findingThreeMax[1], findingThreeMax[2]];
+  var threeMax = [findingThreeMax[0][0], findingThreeMax[1][0], findingThreeMax[2][0]];
 
   var orangeCounter = 0;
   var grapefruitCounter = 0;

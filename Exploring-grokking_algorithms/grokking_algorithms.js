@@ -673,3 +673,96 @@ function subsequenceProblem(wordEntered, wordsCompare){
 		return topSubstring;
 }
 
+
+//********************************************************************************************
+
+// Chapter 10: K-Nearest Neighbors
+
+//********************************************************************************************
+
+//************************************************************
+// Classifying oranges vs grapefruit
+//************************************************************
+
+
+// Object for fruit
+
+var manyFruit = {
+
+  1: { type: "orange", size: 1, redness: 1 },  
+  2: { type: "orange", size: 2, redness: 2 },  
+  3: { type: "grapefruit", size: 6, redness: 5 },  
+  4: { type: "orange", size: 4, redness: 3 },  
+  5: { type: "orange", size: 4, redness: 4 },  
+  6: { type: "grapefruit", size: 7, redness: 5 },  
+  7: { type: "grapefruit", size: 7, redness: 6 },  
+  8: { type: "grapefruit", size: 9, redness: 6 },  
+  9: { type: "grapefruit", size: 8, redness: 7 },  
+  10: { type: "grapefruit", size: 7, redness: 8 }  
+
+};
+
+var mysteryFruit = { type: "", size: 5, redness: 4 };
+
+// evaluation function which takes two arguments: object of current fruit info, fruit being evaluated
+
+var nearestNeighbor = function(currentList, evaluating) {
+
+  var distanceArray = new Array();
+
+  console.log("fruit object length: " + Object.keys(currentList).length);
+
+/*  for(var i = 0; i < Object.keys(currentList).length; i++){
+    distanceArray[i] = [];
+  }*/
+
+  for(listy in currentList){
+
+    // (size - size) squared + (redness - redness) squared
+    // then find the square root of that number -- that is the distance
+    var findingDistance = Math.round(Math.sqrt(Math.pow(currentList[listy].size - evaluating["size"], 2) + Math.pow(currentList[listy].redness - evaluating["redness"], 2)));
+    
+    console.log("listy: " + listy);
+    //console.log("currentList: " + JSON.stringify(currentList));
+    console.log("one property: " + JSON.stringify(currentList[listy].size));
+    console.log("two property: " + evaluating["size"]);
+
+
+    console.log("findingDistance: " + findingDistance);
+    
+    // output will be saved into a multidimensional array containing: type, distance
+    distanceArray.push([currentList[listy].type , findingDistance]);
+  } // end for statement
+
+  // once this is done, the types of the three biggest distance numbers will need to be located and saved somewhere
+    // then determine which type occurs most in conjunction with the three largest distance numbers in that list
+    // either have counter variable for each type, or see if there's a handy js method that will deduce this
+    // return that type as the answer  
+
+  console.log("showing for distanceArray: " + distanceArray);
+  var findingThreeMax = distanceArray.sort(function (c, d){ return c[1] - d[1]; });
+  
+  var threeMax = [findingThreeMax[0], findingThreeMax[1], findingThreeMax[2]];
+
+  console.log("sorted distanceArray: " + distanceArray);
+  console.log("showing for threeMax: " + threeMax);
+
+  var orangeCounter = 0;
+  var grapefruitCounter = 0;
+
+  for(var j = 0; j < threeMax.length; j++){
+
+    if(threeMax[j] == 'orange') {
+      orangeCounter = orangeCounter + 1;
+    }
+    else{
+      grapefruitCounter = grapefruitCounter + 1;
+    }
+  } // end for loop
+
+  if(orangeCounter > grapefruitCounter) {
+    return "grapefruit";
+  } else {
+    return "orange";
+  }
+}

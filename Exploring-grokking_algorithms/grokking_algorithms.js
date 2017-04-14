@@ -721,7 +721,6 @@ var nearestNeighbor = function(currentList, evaluating) {
 
   // once this is done, the types of the three biggest distance numbers will need to be located and saved somewhere
     // then determine which type occurs most in conjunction with the three largest distance numbers in that list
-    // either have counter variable for each type, or see if there's a handy js method that will deduce this
     // return that type as the answer  
 
   var findingThreeMax = distanceArray.sort(function (c, d){ return c[1] - d[1]; });
@@ -732,15 +731,8 @@ var nearestNeighbor = function(currentList, evaluating) {
   var grapefruitCounter = 0;
 
   for(var j = 0; j < threeMax.length; j++){
-
-    if(threeMax[j] == 'orange') {
-      orangeCounter = orangeCounter + 1;
-    }
-    else{
-      grapefruitCounter = grapefruitCounter + 1;
-    }
+    threeMax[j] == 'orange' ? orangeCounter = orangeCounter + 1 : grapefruitCounter = grapefruitCounter + 1;
   } // end for loop
 
-  return grapefruitCounter < orangeCounter ? "grapefruit" : "orange"
-
+  return grapefruitCounter < orangeCounter ? "grapefruit" : "orange";
 }

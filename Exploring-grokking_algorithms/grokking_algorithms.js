@@ -741,9 +741,6 @@ var nearestNeighbor = function(currentList, evaluating) {
     }
   } // end for loop
 
-  if(orangeCounter > grapefruitCounter) {
-    return "grapefruit";
-  } else {
-    return "orange";
-  }
+  return grapefruitCounter < orangeCounter ? "grapefruit" : "orange"
+
 }

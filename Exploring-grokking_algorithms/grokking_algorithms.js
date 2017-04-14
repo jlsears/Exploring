@@ -704,7 +704,6 @@ var manyFruit = {
 var mysteryFruit = { type: "", size: 5, redness: 4 };
 
 // evaluation function which takes two arguments: object of current fruit info, fruit being evaluated
-
 var nearestNeighbor = function(currentList, evaluating) {
 
   var distanceArray = new Array();
@@ -717,19 +716,18 @@ var nearestNeighbor = function(currentList, evaluating) {
         
     // output will be saved into a multidimensional array containing: type, distance
     distanceArray.push([currentList[listy].type , findingDistance]);
-  } // end for statement
+  } // end for loop
 
-  // once this is done, the types of the three biggest distance numbers will need to be located and saved somewhere
-    // then determine which type occurs most in conjunction with the three largest distance numbers in that list
-    // return that type as the answer  
-
+  // sorting the elements in multidimensional distanceArray
   var findingThreeMax = distanceArray.sort(function (c, d){ return c[1] - d[1]; });
-  
+
+  // capturing the three lowest/shortest distances and their corresponding types from findingThreeMax
   var threeMax = [findingThreeMax[0][0], findingThreeMax[1][0], findingThreeMax[2][0]];
 
   var orangeCounter = 0;
   var grapefruitCounter = 0;
 
+  // determining which type appears the most in threeMax
   for(var j = 0; j < threeMax.length; j++){
     threeMax[j] == 'orange' ? orangeCounter = orangeCounter + 1 : grapefruitCounter = grapefruitCounter + 1;
   } // end for loop

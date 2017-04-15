@@ -734,3 +734,103 @@ var nearestNeighbor = function(currentList, evaluating) {
 
   return grapefruitCounter < orangeCounter ? "grapefruit" : "orange";
 }
+
+
+//************************************************************
+// Regression and predicting movie taste
+//************************************************************
+
+var fellowFilmLovers = {
+
+	"Harry": { comedy: 5, action: 5, drama: 1, horror: 2, romance: 1 },
+	"Hermionie": { comedy: 5, action: 5, drama: 3, horror: 2, romance: 4 },
+	"Ron": { comedy: 4, action: 1, drama: 4, horror: 2, romance: 3 },
+	"Ginny": { comedy: 2, action: 3, drama: 5, horror: 2, romance: 3 },
+	"Neville": { comedy: 1, action: 3, drama: 4, horror: 3, romance: 2 },
+	"Luna": { comedy: 1, action: 5, drama: 4, horror: 2, romance: 5 },
+	"Dobby": { comedy: 3, action: 1, drama: 2, horror: 4, romance: 5 },
+	"Hedwig": { comedy: 1, action: 4, drama: 4, horror: 4, romance: 5 },
+	"Malfoy": { comedy: 4, action: 4, drama: 5, horror: 1, romance: 5 },
+	"Dudley": { comedy: 5, action: 3, drama: 3, horror: 3, romance: 1 }
+
+};
+
+var movieWatcher = { comedy: 2, action: 2, drama: 3, horror: 3, romance: 5 };
+
+var fiveNearest = function(neighborList, person) {
+
+	var calculatedDistances = new Array();
+
+	for(rating in neighborList){
+
+			//console.log("neighborList: " + JSON.stringify(neighborList));
+			//console.log("neighborList[rating]: " + JSON.stringify(neighborList[rating]));
+			//console.log("neighborList[rating].comedy: " + neighborList[rating].comedy);
+
+		var getDistances = Math.round(
+
+			Math.sqrt(Math.pow(neighborList[rating].comedy - person["comedy"], 2)
+			+ Math.pow(neighborList[rating].action - person["action"], 2)
+			+ Math.pow(neighborList[rating].drama - person["drama"], 2)
+			+ Math.pow(neighborList[rating].horror - person["horror"], 2)
+			+ Math.pow(neighborList[rating].romance - person["romance"], 2)
+			)
+		); // end getDistance
+
+		//console.log("getDistances in this round: " + getDistances);
+
+		calculatedDistances.push([rating, getDistances]);
+	} // end for
+
+	// sorting the elements in calculatedDistances
+	var findingFiveMax = calculatedDistances.sort(function (c, d){ return c[1] - d[1]; });
+
+	var fiveMax = [findingFiveMax[0][0], findingFiveMax[1][0], findingFiveMax[2][0], findingFiveMax[3][0], findingFiveMax[4][0]];
+
+	return fiveMax;
+} // end fiveNearest function
+
+	var particularMovie = {
+
+	"Harry": 5,
+	"Hermionie": 4,
+	"Ron": 4,
+	"Ginny": 5,
+	"Neville": 3,
+	"Luna": 5,
+	"Dobby": 4,
+	"Hedwig": 4,
+	"Malfoy": 5,
+	"Dudley": 3
+
+};
+
+	// movieWatcher, particularMovie, fellowFilmLovers
+	regressionResult = function(onePerson, moviePredicting, assortedWatchers){
+
+		var individualFive = fiveNearest(assortedWatchers, onePerson);
+
+		console.log("individualFive showing as: " + individualFive);
+
+		var ratingsArray = [];
+
+		for(indiv in individualFive){
+
+			console.log("indiv is: " + individualFive[indiv]);
+			console.log("pulling from object moviePredicting object: " + moviePredicting[individualFive[indiv]]);
+			ratingsArray.push(moviePredicting[individualFive[indiv]]);
+
+		};
+
+		console.log("ratingsArray showing as: " + ratingsArray);
+
+		var sumRegression = ratingsArray.reduce(function(acc, val){
+
+			return acc + val;
+		}, 0);
+
+		console.log("sumRegression: " + sumRegression);
+
+		return sumRegression/5;
+	};
+

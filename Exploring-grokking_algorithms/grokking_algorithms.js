@@ -802,20 +802,23 @@ var fiveNearest = function(neighborList, person) {
 	// movieWatcher, particularMovie, fellowFilmLovers
 	regressionResult = function(onePerson, moviePredicting, assortedWatchers){
 
+		// calling function to identify the five nearest neighbors for this individual
 		var individualFive = fiveNearest(assortedWatchers, onePerson);
 
 		var ratingsArray = [];
 
 		for(indiv in individualFive){
 
+			// locating the rating assigned by the corresponding individual in particularMovie object and adding to ratingsArray
 			ratingsArray.push(moviePredicting[individualFive[indiv]]);
 		};
 
+		// calculating the sum of the ratings of the five nearest neighbors for this movie
 		var sumRegression = ratingsArray.reduce(function(acc, val){
-
 			return acc + val;
 		}, 0);
 
+		// calculating and returning the average of that sum
 		return sumRegression/5;
 	};
 

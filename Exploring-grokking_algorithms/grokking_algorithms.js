@@ -763,10 +763,6 @@ var fiveNearest = function(neighborList, person) {
 
 	for(rating in neighborList){
 
-			//console.log("neighborList: " + JSON.stringify(neighborList));
-			//console.log("neighborList[rating]: " + JSON.stringify(neighborList[rating]));
-			//console.log("neighborList[rating].comedy: " + neighborList[rating].comedy);
-
 		var getDistances = Math.round(
 
 			Math.sqrt(Math.pow(neighborList[rating].comedy - person["comedy"], 2)
@@ -776,8 +772,6 @@ var fiveNearest = function(neighborList, person) {
 			+ Math.pow(neighborList[rating].romance - person["romance"], 2)
 			)
 		); // end getDistance
-
-		//console.log("getDistances in this round: " + getDistances);
 
 		calculatedDistances.push([rating, getDistances]);
 	} // end for
@@ -810,26 +804,17 @@ var fiveNearest = function(neighborList, person) {
 
 		var individualFive = fiveNearest(assortedWatchers, onePerson);
 
-		console.log("individualFive showing as: " + individualFive);
-
 		var ratingsArray = [];
 
 		for(indiv in individualFive){
 
-			console.log("indiv is: " + individualFive[indiv]);
-			console.log("pulling from object moviePredicting object: " + moviePredicting[individualFive[indiv]]);
 			ratingsArray.push(moviePredicting[individualFive[indiv]]);
-
 		};
-
-		console.log("ratingsArray showing as: " + ratingsArray);
 
 		var sumRegression = ratingsArray.reduce(function(acc, val){
 
 			return acc + val;
 		}, 0);
-
-		console.log("sumRegression: " + sumRegression);
 
 		return sumRegression/5;
 	};

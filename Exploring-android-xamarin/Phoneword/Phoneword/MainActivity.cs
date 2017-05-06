@@ -5,6 +5,8 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Phoneword
 {
@@ -15,8 +17,11 @@ namespace Phoneword
         {
             base.OnCreate(bundle);
 
-            // Set our view from the "main" layout resource
+            //*************************************************
+            // Setup
+            //*************************************************
 
+            // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.Main);
 
             // Get UI controls from the loaded layout
@@ -25,28 +30,38 @@ namespace Phoneword
             Button callButton = FindViewById<Button>(Resource.Id.CallButton);
 
             // Disable the "Call" button
-
             callButton.Enabled = false;
 
             // Add code to translate the number
-
             string translatedNumber = string.Empty;
 
-            translateButton.Click += (object sender, EventArgs e) =>
+
+            //*************************************************
+            // Translating and displaying the number
+            //*************************************************
+
+            translateButton.Click += async (object sender, EventArgs e) =>
             {
                 // Translate user's alphanumeric code to numeric
-                translatedNumber = Core.PhonewordTranslator.ToNumber(phoneNumberText.Text);
+                translatedNumber = await Task.Run(() => Core.PhonewordTranslator.ToNumber(phoneNumberText.Text));
                 if (string.IsNullOrWhiteSpace(translatedNumber))
                 {
+                    // nothing to display, nothing to call
                     callButton.Text = "Call";
                     callButton.Enabled = false;
                 }
                 else
-                {
+                {   
+                    // displaying translated number and staging t
                     callButton.Text = "Call " + translatedNumber;
                     callButton.Enabled = true;
                 }
             };
+
+
+            //*************************************************
+            // Calling the number
+            //*************************************************
 
             callButton.Click += (object sender, EventArgs e) =>
             {

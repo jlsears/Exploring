@@ -46,8 +46,10 @@
     <Compile Include="Duck.cs" />
     <Compile Include="FlyBehavior\FlyBehavior.cs" />
     <Compile Include="FlyBehavior\FlyNoWay.cs" />
+    <Compile Include="FlyBehavior\FlyRocketPowered.cs" />
     <Compile Include="FlyBehavior\FlyWithWings.cs" />
     <Compile Include="MallardDuck.cs" />
+    <Compile Include="ModelDuck.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QuackBehavior\MuteQuack.cs" />

@@ -29,5 +29,15 @@ namespace HF_DesignPatterns
         {
             Console.WriteLine("All ducks float, even decoys!");
         }
+
+        public void setFlyBehavior(IFlyBehavior fb)
+        {
+            flyBehavior = fb;
+        }
+
+        public void setQuackBehavior(IQuackBehavior qb)
+        {
+            quackBehavior = qb;
+        }
     }
 }

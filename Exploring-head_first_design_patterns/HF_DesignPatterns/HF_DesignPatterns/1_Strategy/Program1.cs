@@ -8,7 +8,7 @@ namespace HF_DesignPatterns
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main1(string[] args)
         {
 
             Console.WriteLine("Duck-related program is starting");

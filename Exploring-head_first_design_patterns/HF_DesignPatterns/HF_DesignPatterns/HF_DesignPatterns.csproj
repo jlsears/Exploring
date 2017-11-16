@@ -43,19 +43,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Duck.cs" />
-    <Compile Include="FlyBehavior\FlyBehavior.cs" />
-    <Compile Include="FlyBehavior\FlyNoWay.cs" />
-    <Compile Include="FlyBehavior\FlyRocketPowered.cs" />
-    <Compile Include="FlyBehavior\FlyWithWings.cs" />
-    <Compile Include="MallardDuck.cs" />
-    <Compile Include="ModelDuck.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="1_Strategy\Duck.cs" />
+    <Compile Include="1_Strategy\FlyBehavior\FlyBehavior.cs" />
+    <Compile Include="1_Strategy\FlyBehavior\FlyNoWay.cs" />
+    <Compile Include="1_Strategy\FlyBehavior\FlyRocketPowered.cs" />
+    <Compile Include="1_Strategy\FlyBehavior\FlyWithWings.cs" />
+    <Compile Include="1_Strategy\MallardDuck.cs" />
+    <Compile Include="1_Strategy\ModelDuck.cs" />
+    <Compile Include="1_Strategy\Program1.cs" />
+    <Compile Include="2_Observable\Displays\CurrentConditionsDisplay.cs" />
+    <Compile Include="2_Observable\Program2.cs" />
+    <Compile Include="2_Observable\Unsubscriber.cs" />
+    <Compile Include="2_Observable\WeatherData.cs" />
+    <Compile Include="2_Observable\WeatherInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="QuackBehavior\MuteQuack.cs" />
-    <Compile Include="QuackBehavior\Quack.cs" />
-    <Compile Include="QuackBehavior\QuackBehavior.cs" />
-    <Compile Include="QuackBehavior\Squeak.cs" />
+    <Compile Include="1_Strategy\QuackBehavior\MuteQuack.cs" />
+    <Compile Include="1_Strategy\QuackBehavior\Quack.cs" />
+    <Compile Include="1_Strategy\QuackBehavior\QuackBehavior.cs" />
+    <Compile Include="1_Strategy\QuackBehavior\Squeak.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

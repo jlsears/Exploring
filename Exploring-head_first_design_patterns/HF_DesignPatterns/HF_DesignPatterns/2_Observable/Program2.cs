@@ -17,6 +17,8 @@ namespace HF_DesignPatterns
 
             snowy.WeatherChange(55, 65);
 
+            snowy.WeatherChange(46, 32);
+
             Console.ReadLine();
         }
     }

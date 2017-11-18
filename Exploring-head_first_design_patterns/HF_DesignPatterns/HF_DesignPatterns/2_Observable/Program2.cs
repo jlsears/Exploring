@@ -11,13 +11,28 @@ namespace HF_DesignPatterns
         static void Main(string[] args)
         {
             WeatherData snowy = new WeatherData();
+
             CurrentConditionsDisplay moreSnow = new CurrentConditionsDisplay();
 
             moreSnow.Subscribe(snowy);
 
             snowy.WeatherChange(55, 65);
 
+            StatisticsDisplay loveSnow = new StatisticsDisplay();
+
+            loveSnow.Subscribe(snowy);
+
             snowy.WeatherChange(46, 32);
+
+            snowy.WeatherChange(38, 12);
+
+            moreSnow.Unsubscribe();
+
+            snowy.WeatherChange(42, 18);
+
+            moreSnow.Subscribe(snowy);
+
+            snowy.WeatherChange(44, 22);
 
             Console.ReadLine();
         }

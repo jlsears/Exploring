@@ -52,6 +52,7 @@
     <Compile Include="1_Strategy\ModelDuck.cs" />
     <Compile Include="1_Strategy\Program1.cs" />
     <Compile Include="2_Observable\Displays\CurrentConditionsDisplay.cs" />
+    <Compile Include="2_Observable\Displays\StatisticsDisplay.cs" />
     <Compile Include="2_Observable\Program2.cs" />
     <Compile Include="2_Observable\Unsubscriber.cs" />
     <Compile Include="2_Observable\WeatherData.cs" />

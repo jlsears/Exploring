@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HF_DesignPatterns
 {
-    public class WeatherData : IObservable<WeatherInfo>
+    public class WeatherData: IObservable<WeatherInfo>
     {
         private List<IObserver<WeatherInfo>> observers;
 
@@ -29,10 +29,14 @@ namespace HF_DesignPatterns
 
         public void WeatherChange(int theTemp, int theHumidity)
         {
+            // Creating a new instance of the WeatherInfo object containing the updated
+            // data, which can then be cohesively passed along to the observers
             var latestInfo = new WeatherInfo(theTemp, theHumidity);
 
             Console.WriteLine("WeatherChange called");
 
+            // Calling the OnNext/Update method that each of the observers has implemented
+            // and passing that newly created WeatherInfo object along to them
             foreach (var observer in observers)
                 observer.OnNext(latestInfo);
         }

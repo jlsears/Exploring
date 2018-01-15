@@ -8,7 +8,7 @@ namespace HF_DesignPatterns
 {
     class Program2
     {
-        static void Main(string[] args)
+        static void Main2(string[] args)
         {
             // Instantiating our subject/observable
             WeatherData snowy = new WeatherData();

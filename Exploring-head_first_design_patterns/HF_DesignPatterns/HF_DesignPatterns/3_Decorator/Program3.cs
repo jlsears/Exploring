@@ -4,11 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace HF_DesignPatterns
 {
     class Program3
     {
-        static void Main(string[] args)
+        static void Main3(string[] args)
         {
             Beverage beverage = new Espresso();
 

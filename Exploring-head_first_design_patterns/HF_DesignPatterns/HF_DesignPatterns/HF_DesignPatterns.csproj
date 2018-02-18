@@ -57,6 +57,8 @@
     <Compile Include="2_Observable\Unsubscriber.cs" />
     <Compile Include="2_Observable\WeatherData.cs" />
     <Compile Include="2_Observable\WeatherInfo.cs" />
+    <Compile Include="3a_Decorator\LowerCaseInputStream.cs" />
+    <Compile Include="3a_Decorator\Program3a.cs" />
     <Compile Include="3_Decorator\AbstractClasses\Beverage.cs" />
     <Compile Include="3_Decorator\AbstractClasses\CondimentDecorator.cs" />
     <Compile Include="3_Decorator\ConcreteComponents\Espresso.cs" />

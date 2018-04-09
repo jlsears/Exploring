@@ -9,7 +9,7 @@ namespace HF_DesignPatterns
 {
     class Program3a
     {
-        static void Main(string[] args)
+        static void Main3a(string[] args)
         {
             String tfile = @"C:\Users\Jennifer\Documents\DPtest.txt";
 

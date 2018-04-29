@@ -89,6 +89,8 @@
     <Compile Include="4_Factory\Program4.cs" />
     <Compile Include="4_Factory\Stores\NYPizzaStore.cs" />
     <Compile Include="4_Factory\Stores\PizzaStore.cs" />
+    <Compile Include="5_Singleton\Program5.cs" />
+    <Compile Include="5_Singleton\Singleton.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="1_Strategy\QuackBehavior\MuteQuack.cs" />
     <Compile Include="1_Strategy\QuackBehavior\Quack.cs" />

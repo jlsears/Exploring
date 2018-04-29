@@ -6,14 +6,12 @@ using System.Threading.Tasks;
 
 namespace HF_DesignPatterns
 {
-    class Program4
+    class Program5
     {
-        static void Main4(string[] args)
+        static void Main(string[] args)
         {
-            PizzaStore nyPizzaStore = new NYPizzaStore();
+            Console.WriteLine(Singleton.Instance);
 
-            nyPizzaStore.orderPizza("cheese");
-    
             Console.ReadLine();
         }
     }

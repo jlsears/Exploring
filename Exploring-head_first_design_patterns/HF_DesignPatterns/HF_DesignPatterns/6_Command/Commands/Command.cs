@@ -6,13 +6,10 @@ using System.Threading.Tasks;
 
 namespace HF_DesignPatterns
 {
-    class Program5
+    public interface ICommand
     {
-        static void Main5(string[] args)
-        {
-            Console.WriteLine(Singleton.Instance);
+        void execute();
 
-            Console.ReadLine();
-        }
+        void undo();
     }
 }

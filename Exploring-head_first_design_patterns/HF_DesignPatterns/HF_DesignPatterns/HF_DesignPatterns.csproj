@@ -105,6 +105,13 @@
     <Compile Include="6_Command\Receivers\Hottub.cs" />
     <Compile Include="6_Command\Receivers\Light.cs" />
     <Compile Include="6_Command\Receivers\Stereo.cs" />
+    <Compile Include="7_Adapter\Interfaces\IDuck.cs" />
+    <Compile Include="7_Adapter\Interfaces\ITurkey.cs" />
+    <Compile Include="7_Adapter\Subclasses\MallardDuck2.cs" />
+    <Compile Include="7_Adapter\Program7.cs" />
+    <Compile Include="7_Adapter\TestDuck.cs" />
+    <Compile Include="7_Adapter\Subclasses\TurkeyAdapter.cs" />
+    <Compile Include="7_Adapter\Subclasses\WildTurkey.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="1_Strategy\QuackBehavior\MuteQuack.cs" />
     <Compile Include="1_Strategy\QuackBehavior\Quack.cs" />

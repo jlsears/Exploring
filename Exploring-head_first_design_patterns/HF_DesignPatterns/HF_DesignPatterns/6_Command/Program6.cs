@@ -8,7 +8,7 @@ namespace HF_DesignPatterns
 {
     class Program6
     {
-        static void Main(string[] args)
+        static void Main6(string[] args)
         {
             Remote remoteControl = new Remote();
 

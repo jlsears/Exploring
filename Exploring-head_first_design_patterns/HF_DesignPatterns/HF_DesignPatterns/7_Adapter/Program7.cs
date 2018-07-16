@@ -8,7 +8,7 @@ namespace HF_DesignPatterns
 {
     class Program7
     {
-        static void Main(string[] args)
+        static void Main7(string[] args)
         {
             MallardDuck2 duck = new MallardDuck2();
 
